@@ -40,6 +40,27 @@ def get_recipes():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+
+    # using names may result in 2 identical users, but wanted to use name for recipe credit. chose to add both.
+
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+    
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+
+        register = {
+            "username": request.form.get("username").lower(),
+            "first_name": request.form.get("first_name").lower(),
+            "last_name": request.form.get("last_name").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
+
+        session["user"] = request.form.get("username").lower()
+        flash("Registration successful")
     return render_template("register.html")
 
 
