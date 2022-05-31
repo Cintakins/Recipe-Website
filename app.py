@@ -1,4 +1,5 @@
 import os
+import random
 from flask import (
     Flask, flash, render_template, 
     redirect, request, session, url_for)
@@ -19,6 +20,18 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+
+
+@app.route("/get_home")
+def get_home():
+    recipes = mongo.db.recipes.find()
+    recipes_list = []
+    for recipe in recipes:
+        recipes_list.append(recipe)
+    todays_recipe = random.choice(recipes_list)
+    return render_template("home.html", todays_recipe=todays_recipe)
+
+
 @app.route("/get_recipes")
 def get_recipes():
     recipes = mongo.db.recipes.find()
