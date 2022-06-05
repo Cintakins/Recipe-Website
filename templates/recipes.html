@@ -1,10 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for recipe in recipes %}
-        {{ recipe.recipe_name }}<br>
-        {{ recipe.category_name_1}}<br>
-        {{ recipe.category_name_2}}<br>
-        {{ recipe.ingredients }}<br>
-        {{ recipe.instructions }}<br>
-    {% endfor %}
+    <div class="card">
+        {% for recipe in recipes %}
+        <div class="card-image waves-effect waves-block waves-light">
+        </div>
+        <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">
+                {{ recipe.recipe_name.title() }}
+                <i class="material-icons right">more_vert</i>
+            </span>
+            <span class="card-title activator grey-text text-darken-4">
+                Description
+            </span>
+
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.title() }}<i class="material-icons right">close</i></span>
+            <p>{{ recipe.ingredients }}</p>
+            <p>{{ recipe.instructions }}</p>
+        </div>
+        {% endfor %}
+    </div>
+<!-- {% for recipe in recipes %}
+{{ recipe.recipe_name }}<br>
+{{ recipe.category_name_1}}<br>
+{{ recipe.category_name_2}}<br>
+{{ recipe.ingredients }}<br>
+{{ recipe.instructions }}<br>
+{% endfor %} -->
 {% endblock %}
