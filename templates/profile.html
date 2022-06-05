@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-    
-        {% for recipe in recipes %}
+
+    {% for recipe in recipes %}
+    {% if recipe.added_by == current_user %}
         <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
             </div>
@@ -21,13 +22,7 @@
                 <p>{{ recipe.instructions }}</p>
             </div>
         </div>
-        {% endfor %}
+    {% endif %}
+    {% endfor %}
 
-<!-- {% for recipe in recipes %}
-{{ recipe.recipe_name }}<br>
-{{ recipe.category_name_1}}<br>
-{{ recipe.category_name_2}}<br>
-{{ recipe.ingredients }}<br>
-{{ recipe.instructions }}<br>
-{% endfor %} -->
 {% endblock %}

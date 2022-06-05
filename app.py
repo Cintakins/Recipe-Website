@@ -52,11 +52,11 @@ def login():
         except:
             print("Error accessing the database")
 
-        if username_input == existing_username:
+        if existing_username:
             password_input = request.form.get("password")
             if check_password_hash(existing_username["password"], password_input):
                 session["current_user"] = username_input
-                full_name = existing_username.first_name 
+                full_name = existing_username["first_name"] + " " + existing_username["last_name"]
                 flash(f"Welcome back {full_name.title()}")
 
             else:
