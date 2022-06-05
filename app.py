@@ -42,6 +42,34 @@ def get_recipes():
 def add():
     return render_template("add.html")
 
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        try:
+            username_input = request.form.get("username").lower()
+            existing_username = mongo.db.users.find_one({"username": username_input})
+        except:
+            print("Error accessing the database")
+
+        if username_input == existing_username:
+            password_input = request.form.get("password")
+            if check_password_hash(existing_username["password"], password_input):
+                session["current_user"] = username_input
+                full_name = existing_username.first_name 
+                flash(f"Welcome back {full_name.title()}")
+
+            else:
+                flash("Whoops! Incorrect username or password.")
+                return redirect(url_for("login"))
+
+        else:
+            flash("Whoops! Incorrect username or password.")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
