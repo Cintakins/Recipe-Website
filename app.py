@@ -58,6 +58,7 @@ def login():
                 session["current_user"] = username_input
                 full_name = existing_username["first_name"] + " " + existing_username["last_name"]
                 flash(f"Welcome back {full_name.title()}")
+                return redirect(url_for("profile", user=session["current_user"]))
 
             else:
                 flash("Whoops! Incorrect username or password.")
@@ -68,6 +69,13 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
+
+
+@app.route("/profile/<user>", methods=["GET", "POST"])
+def profile(user):
+    user = mongo.db.users.find_one(
+        {"username": session["current_user"]})["username"]
+    return render_template("profile.html", user=user)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -97,6 +105,7 @@ def register():
 
             session["user"] = request.form.get("username").lower()
             flash("Registration successful")
+            return redirect(url_for("profile", user=session["current_user"]))
 
         else:
             flash("Passwords do no match. Try again")

@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="card-panel">
+    <h3>
+        {{ user }}'s Profile
+    </h3>
+</div>
     {% for recipe in recipes %}
-    {% if recipe.added_by == current_user %}
+    {% if recipe.added_by == user %}
         <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
             </div>
