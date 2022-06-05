@@ -1,7 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
 
-    {{ todays_recipe.recipe_name }}<br>
-    {{ todays_recipe.ingredients }}<br>
+<div class="carousel carousel-slider center">
+    <div class="carousel-fixed-item center">
+        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+    </div>
+    <div class="carousel-item red white-text" href="#one!">
+        <h2>{{ todays_recipe.recipe_name.title() }}</h2>
+        <p class="white-text">{{ todays_recipe.ingredients }}</p>
+    </div>
+    {% for recipe in recipes %}
+    <div class="carousel-item amber white-text" href="#two!">
+        <h2>{{ recipe.recipe_name.title() }}</h2>
+        <p class="white-text">{{ recipe.ingredients }}</p>
+    </div>
+    {% endfor %}
+</div>
+<!-- {{ todays_recipe.recipe_name }}<br>
+{{ todays_recipe.ingredients }}<br> -->
 
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}

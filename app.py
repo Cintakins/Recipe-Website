@@ -1,3 +1,5 @@
+
+# task_manager walk-through code
 import os
 import random
 from flask import (
@@ -11,18 +13,16 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__)
 
-
+# task_manager walk-through code
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-
+# initializing database
 mongo = PyMongo(app)
 
 
 @app.route("/")
-
-
 @app.route("/get_home")
 def get_home():
     recipes = mongo.db.recipes.find()
@@ -37,6 +37,10 @@ def get_home():
 def get_recipes():
     recipes = mongo.db.recipes.find()
     return render_template("recipes.html", recipes=recipes)
+
+@app.route("/add")
+def add():
+    return render_template("add.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -64,6 +68,7 @@ def register():
     return render_template("register.html")
 
 
+# code from task-manager min project
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
     port=int(os.environ.get("PORT")),
