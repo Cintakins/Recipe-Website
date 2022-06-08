@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row">
-    <form class="col s12" method="POST" action="{{ url_for('add') }}">
+    <form class="col s12" method="POST" action="{{ url_for('edit', recipe_id=recipe._id) }}">
         <div class="row">
             <div class="input-field col s12">
                 <input id="recipe_name" type="text" class="validate" name="recipe_name">
@@ -46,7 +46,7 @@
             <label>Images in select</label>
         </div>
         <div class="row center-align">
-            <button class="btn waves-effect waves-light" type="submit" name="submit_recipe">Add Recipe
+            <button class="btn waves-effect waves-light" type="submit" name="submit_recipe">Edit Recipe
                 <i class="material-icons right">send</i>
               </button>
         </div>

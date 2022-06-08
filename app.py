@@ -58,6 +58,12 @@ def add():
     return redirect(url_for("recipes"))
 
 
+@route("/edit/<recipe_id>", methods=["POST", "GET"])
+def edit(recipe_id):
+    recipe = mongo.db.recipes.find_one("_id": ObjectId(recipe_id))
+    return render_template("edit.html", recipe=recipe)
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
