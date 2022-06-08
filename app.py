@@ -38,9 +38,21 @@ def get_recipes():
     recipes = mongo.db.recipes.find()
     return render_template("recipes.html", recipes=recipes)
 
-@app.route("/add")
+
+@app.route("/add", methods=["POST", "GET"])
 def add():
     return render_template("add.html")
+    if request.method == "POST":
+        recipe = {
+            "recipe_name": request.form.get("recipe_name").lower(),
+            "category_name_1": request.form.get("category_name_1"),
+            "category_name_2": request.form.get("category_name_2"),
+            "ingredients": request.form.getlist("ingredients").lower(),
+            "instructions": request.form.getlist("instructions"),
+            "description": request.form.get("description"),
+            "added_by": session["user"]
+        }
+        mongo.db.recipes.insert_one(recipe)
 
 
 @app.route("/login", methods=["GET", "POST"])
