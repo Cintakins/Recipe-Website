@@ -33,8 +33,8 @@ def get_home():
     return render_template("home.html", todays_recipe=todays_recipe)
 
 
-@app.route("/get_recipes")
-def get_recipes():
+@app.route("/recipes")
+def recipes():
     recipes = mongo.db.recipes.find()
     return render_template("recipes.html", recipes=recipes)
 
@@ -50,9 +50,12 @@ def add():
             "ingredients": request.form.getlist("ingredients").lower(),
             "instructions": request.form.getlist("instructions"),
             "description": request.form.get("description"),
-            "added_by": session["user"]
+            "added_by": session["current_user"],
+            "img_url": request.form.get("img_url")
         }
         mongo.db.recipes.insert_one(recipe)
+    flash("Recipe has been successfully added. Yummy!")
+    return redirect(url_for("recipes"))
 
 
 @app.route("/login", methods=["GET", "POST"])
