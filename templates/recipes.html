@@ -2,8 +2,9 @@
 {% block content %}
     
         {% for recipe in recipes %}
-        <div class="col s3 card">
+        <div class="card medium col s3">
             <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/hdp-jambalaya-440-400-f14ba7f.jpg?quality=90&webp=true&resize=440,400">
             </div>
             <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">
@@ -25,14 +26,12 @@
                     By: {{ recipe.added_by }}
                 </p>
             </div>
+            {% if session[user]|lower == recipe.added_by|lower %}
+                <a class="waves-effect waves-light btn" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
+                <a class="waves-effect waves-light btn" href="{{ url_for('delete', recipe_id=recipe._id) }}">Edit</a>
+            {% endif %}
         </div>
+
         {% endfor %}
 
-<!-- {% for recipe in recipes %}
-{{ recipe.recipe_name }}<br>
-{{ recipe.category_name_1}}<br>
-{{ recipe.category_name_2}}<br>
-{{ recipe.ingredients }}<br>
-{{ recipe.instructions }}<br>
-{% endfor %} -->
 {% endblock %}

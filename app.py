@@ -13,7 +13,7 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__)
 
-# task_manager walk-through code
+
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
@@ -23,8 +23,8 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/get_home")
-def get_home():
+@app.route("/home")
+def home():
     recipes = mongo.db.recipes.find()
     recipes_list = []
     for recipe in recipes:
@@ -39,11 +39,10 @@ def recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
-@app.route("/add", methods=["POST", "GET"])
-def add():
-    return render_template("add.html")
+@app.route("/edit/<recipe_id>", methods=["POST", "GET"])
+def edit(recipe_id):
     if request.method == "POST":
-        recipe = {
+        recipe_dict = {
             "recipe_name": request.form.get("recipe_name").lower(),
             "category_name_1": request.form.get("category_name_1"),
             "category_name_2": request.form.get("category_name_2"),
@@ -53,15 +52,17 @@ def add():
             "added_by": session["current_user"],
             "img_url": request.form.get("img_url")
         }
-        mongo.db.recipes.insert_one(recipe)
-    flash("Recipe has been successfully added. Yummy!")
-    return redirect(url_for("recipes"))
-
-
-@route("/edit/<recipe_id>", methods=["POST", "GET"])
-def edit(recipe_id):
-    recipe = mongo.db.recipes.find_one("_id": ObjectId(recipe_id))
+        mongo.db.recipes.update({"_id": ObjectId(recipe_id)},recipe_dict)
+    flash("Recipe Updated!")
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template("edit.html", recipe=recipe)
+
+
+@app.route("/delete/<recipe_id>")
+def delete(recipe_id):
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    flash("Recipe has been deleted.")
+    return redirect("recipes.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -95,7 +96,7 @@ def login():
 @app.route("/log_out")
 def log_out():
     session.clear()
-    flash("You are logged out")
+    flash("You have logged out")
     return redirect(url_for("home"))
 
 
@@ -121,7 +122,7 @@ def register():
             {"username": request.form.get("username").lower()})
     
         if existing_user:
-            flash("Username already exists")
+            flash("Username taken. Try another")
             return redirect(url_for("register"))
 
         password = request.form.get("password")
@@ -134,16 +135,42 @@ def register():
                 "last_name": request.form.get("last_name").lower(),
                 "password": generate_password_hash(request.form.get("password"))
             }
-            mongo.db.users.insert_one(register)
-
-            session["user"] = request.form.get("username").lower()
-            flash("Registration successful")
-            return redirect(url_for("profile", user=session["current_user"]))
 
         else:
             flash("Passwords do no match. Try again")
             return redirect(url_for("register"))
+
+        mongo.db.users.insert_one(register)
+
+        session["current_user"] = request.form.get("username").lower()
+        flash("Registration successful")
+        return redirect(url_for("profile", user=session["current_user"]))
+
     return render_template("register.html")
+
+
+@app.route("/add/<user>", methods=["POST", "GET"])
+def add(user):
+    if session["current_user"]:
+        if request.method == "POST":
+            recipe = {
+                "recipe_name": request.form.get("recipe_name").lower(),
+                "category_name_1": request.form.get("category_name_1"),
+                "category_name_2": request.form.get("category_name_2"),
+                "ingredients": request.form.getlist("ingredients").lower(),
+                "instructions": request.form.getlist("instructions"),
+                "description": request.form.get("description"),
+                "added_by": session["current_user"],
+                "img_url": request.form.get("img_url")
+            }
+            mongo.db.recipes.insert_one(recipe)
+            flash("Recipe has been successfully added. Yummy!")
+            return redirect(url_for("recipes"))
+        return render_template("add.html", user=session["current_user"])
+    else:
+        flash("You must log in to add recipes.")
+        return redirect("login")
+    
 
 
 # code from task-manager min project
