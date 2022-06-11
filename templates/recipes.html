@@ -2,9 +2,9 @@
 {% block content %}
     
         {% for recipe in recipes %}
-        <div class="card medium col s3">
+        <div class="card large">
             <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/hdp-jambalaya-440-400-f14ba7f.jpg?quality=90&webp=true&resize=440,400">
+                <img class="activator" src="{{ recipe.img_url }}">
             </div>
             <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">

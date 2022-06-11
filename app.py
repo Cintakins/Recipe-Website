@@ -30,11 +30,11 @@ def home():
     for recipe in recipes:
         recipes_list.append(recipe)
     todays_recipe = random.choice(recipes_list)
-    return render_template("home.html", todays_recipe=todays_recipe)
+    return render_template("home.html", todays_recipe=todays_recipe, recipes=recipes)
 
 
-@app.route("/recipes")
-def recipes():
+@app.route("/all_recipes")
+def all_recipes():
     recipes = mongo.db.recipes.find()
     return render_template("recipes.html", recipes=recipes)
 
@@ -102,9 +102,11 @@ def log_out():
 
 @app.route("/profile/<user>", methods=["GET", "POST"])
 def profile(user):
+    recipes = mongo.db.recipes.find()
+
     user = mongo.db.users.find_one(
         {"username": session["current_user"]})["username"]
-    return render_template("profile.html", user=user)
+    return render_template("profile.html", user=user, recipes=recipes)
 
     if session["current_user"]:
         return render_template("profile.html", user=user)
@@ -156,7 +158,7 @@ def add(user):
                 "recipe_name": request.form.get("recipe_name").lower(),
                 "category_name_1": request.form.get("category_name_1"),
                 "category_name_2": request.form.get("category_name_2"),
-                "ingredients": request.form.getlist("ingredients").lower(),
+                "ingredients": request.form.getlist("ingredients"),
                 "instructions": request.form.getlist("instructions"),
                 "description": request.form.get("description"),
                 "added_by": session["current_user"],
@@ -164,7 +166,7 @@ def add(user):
             }
             mongo.db.recipes.insert_one(recipe)
             flash("Recipe has been successfully added. Yummy!")
-            return redirect(url_for("recipes"))
+            return redirect(url_for("all_recipes"))
 
     if not session["current_user"]:
         flash("You must log in to add recipes.")

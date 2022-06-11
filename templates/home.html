@@ -2,13 +2,34 @@
 {% block content %}
 
 <div class="carousel carousel-slider center">
-    <div class="carousel-fixed-item center">
-        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+    <div class="card carousel-item medium"href="#one!">
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/hdp-jambalaya-440-400-f14ba7f.jpg?quality=90&webp=true&resize=440,400">
+        </div>
+        <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">
+                {{ todays_recipe.recipe_name.title() }}
+                <i class="material-icons right">more_vert</i>
+            </span>
+            <span class="card-title activator grey-text text-darken-4">
+                Description
+            </span>
+
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">{{ todays_recipe.recipe_name.title() }}<i class="material-icons right">close</i></span>
+            <p>{{ todays_recipe.ingredients }}</p>
+            <p>{{ todays_recipe.instructions }}</p>
+        </div>
+        <div clas="center-align">
+            <p>
+                By: {{ todays_recipe.added_by }}
+            </p>
+        </div>
+        
     </div>
-    <div class="carousel-item red white-text" href="#one!">
-        <h2>{{ todays_recipe.recipe_name.title() }}</h2>
-        <p class="white-text">{{ todays_recipe.description }}</p>
-    </div>
+
+
     {% for recipe in recipes %}
     <div class="carousel-item amber white-text" href="#two!">
         <h2>{{ recipe.recipe_name.title() }}</h2>

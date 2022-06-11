@@ -22,7 +22,7 @@
             <div class="nav-wrapper">
                 <a href="{{ url_for('home') }}" class="brand-logo">Delicious Recipes</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('recipes') }}">All Recipes</a></li>
+                    <li><a href="{{ url_for('all_recipes') }}">All Recipes</a></li>
                     <li><a href="{{ url_for('add', user=session['current_user']) }}">Add Recipes</a></li>
                     
                     {% if session.current_user %}

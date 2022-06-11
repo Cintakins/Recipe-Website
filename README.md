@@ -109,3 +109,5 @@ Happy coding!
 
 
 javascript initializing, used generl init function
+
+wanted to use route in app.py to redirect potential user to login page when they click "add recipe" if they are not logged in. 
