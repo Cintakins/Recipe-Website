@@ -5,9 +5,8 @@ body {
 } 
 
 .card {
+    display: inline-block;
     width: 30%;
-    float: left;
-    margin-right: 5%;
 }
 
 #form-div {
