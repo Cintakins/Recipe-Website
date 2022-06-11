@@ -151,8 +151,7 @@ def register():
 
 @app.route("/add/<user>", methods=["POST", "GET"])
 def add(user):
-    if session["current_user"]:
-        if request.method == "POST":
+    if request.method == "POST":
             recipe = {
                 "recipe_name": request.form.get("recipe_name").lower(),
                 "category_name_1": request.form.get("category_name_1"),
@@ -166,10 +165,14 @@ def add(user):
             mongo.db.recipes.insert_one(recipe)
             flash("Recipe has been successfully added. Yummy!")
             return redirect(url_for("recipes"))
-        return render_template("add.html", user=session["current_user"])
-    else:
+
+    if not session["current_user"]:
         flash("You must log in to add recipes.")
-        return redirect("login")
+        return redirect(url_for("login"))
+
+    return render_template("add.html", user=session["current_user"])
+        
+    
     
 
 
