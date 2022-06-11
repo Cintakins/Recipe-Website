@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-    
+<div class="card-panel">
+    <h3>
+        All Recipes
+    </h3>
+</div>
         {% for recipe in recipes %}
         <div class="card large">
             <div class="card-image waves-effect waves-block waves-light">
@@ -11,9 +15,11 @@
                     {{ recipe.recipe_name.title() }}
                     <i class="material-icons right">more_vert</i>
                 </span>
-                <span class="card-title activator grey-text text-darken-4">
-                    Description
-                </span>
+                <!-- <span class="card-title activator grey-text text-darken-4"> -->
+                    <p id="recipe-description">
+                        {{ recipe.description }}
+                    </p>
+                <!-- </span> -->
 
             </div>
             <div class="card-reveal">

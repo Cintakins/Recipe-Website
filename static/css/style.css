@@ -6,4 +6,11 @@ body {
 
 .card {
     width: 30%;
+    float: left;
+    margin-right: 5%;
 }
+
+#form-div {
+    opacity: 0.9;
+}
+
