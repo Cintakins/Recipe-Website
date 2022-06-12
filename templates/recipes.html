@@ -37,7 +37,8 @@
                 </span>
                 <p id="recipe-description" class="truncate">
                     {{ recipe.description }}
-                </p> 
+                </p>
+                <br>
                 {% if session[user]|lower == recipe.added_by|lower %}
                 <p>
                     <a class="waves-effect waves-light btn" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
