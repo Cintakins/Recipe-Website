@@ -21,6 +21,7 @@
         <nav>
             <div class="nav-wrapper red darken-3">
                 <a href="{{ url_for('home') }}" class="brand-logo">Delicious Recipes</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('all_recipes') }}">All Recipes</a></li>
                     
@@ -35,6 +36,18 @@
                 </ul>
             </div>
         </nav>
+        <ul class="sidenav red darken-3" id="mobile-demo">
+            <li><a href="{{ url_for('all_recipes') }}">All Recipes</a></li>
+                    
+                    {% if session.current_user %}
+                        <li><a href="{{ url_for('add') }}">Add Recipes</a></li>
+                        <li><a href="{{ url_for('profile', user=session['current_user']) }}">profile</a></li>
+                        <li><a href="{{ url_for('log_out') }}">Log Out</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login_to_add') }}">Add Recipes</a></li>
+                        <li><a href="{{ url_for('login') }}">Log In / Register</a></li>
+                    {% endif %}
+        </ul>
     </header>
     <section>
         {% with messages = get_flashed_messages() %}

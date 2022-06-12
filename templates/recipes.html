@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="card-panel">
+<div class="card-panel center-align">
     <h3>
         All Recipes
     </h3>
+</div>
+<div class="row center-align">
+    <form class="col s12" action="{{ url_for('search') }}" method="POST">
+        <div class="row">
+            <div class="input-field col s10 m6 offset-s1 offset-m3">
+                <input id="search" type="text" class="validate" name="search" required>
+                <label for="search">Search Recipes</label>
+                <button class="btn waves-effect waves-light red darken-1" type="submit" name="action">Search
+                    <i class="material-icons left">search</i>
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
     {% for recipe in recipes %}
     <div class="row">

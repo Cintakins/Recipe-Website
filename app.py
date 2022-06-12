@@ -43,6 +43,13 @@ def all_recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
+@app.route("/search", methods=["POST", "GET"])
+def search():
+    search_item = request.form.get("search")
+    recipes = mongo.db.recipes.find({"$text": {"$search": search_item}})
+    return render_template("recipes.html", recipes=recipes)
+
+
 @app.route("/edit/<recipe_id>", methods=["POST", "GET"])
 def edit(recipe_id):
     if request.method == "POST":
