@@ -1,6 +1,7 @@
 
 # task_manager walk-through code
 import os
+import datetime
 import random
 from flask import (
     Flask, flash, render_template, 
@@ -25,12 +26,15 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
+    date = datetime.datetime.now()
+    day = date.strftime("%A")
+
     recipes = mongo.db.recipes.find()
     recipes_list = []
     for recipe in recipes:
         recipes_list.append(recipe)
     todays_recipe = random.choice(recipes_list)
-    return render_template("home.html", todays_recipe=todays_recipe, recipes=recipes)
+    return render_template("home.html", todays_recipe=todays_recipe, recipes=recipes, day=day)
 
 
 @app.route("/all_recipes")
@@ -154,19 +158,24 @@ def register():
 @app.route("/add", methods=["POST", "GET"])
 def add():
     if request.method == "POST":
-            recipe = {
-                "recipe_name": request.form.get("recipe_name").lower(),
-                "category_name_1": request.form.get("category_name_1"),
-                "category_name_2": request.form.get("category_name_2"),
-                "ingredients": request.form.getlist("ingredients"),
-                "instructions": request.form.getlist("instructions"),
-                "description": request.form.get("description"),
-                "added_by": session["current_user"],
-                "img_url": request.form.get("img_url")
-            }
-            mongo.db.recipes.insert_one(recipe)
-            flash("Recipe has been successfully added. Yummy!")
-            return redirect(url_for("all_recipes"))
+        ingredients = []
+        chips = request.form.get("ingredients")
+        for chip in chips:
+            ingredients.append(chip)
+        
+        recipe = {
+            "recipe_name": request.form.get("recipe_name").lower(),
+            "category_name_1": request.form.get("category_name_1"),
+            "category_name_2": request.form.get("category_name_2"),
+            "ingredients": ingredients,
+            "instructions": request.form.getlist("instructions"),
+            "description": request.form.get("description"),
+            "added_by": session["current_user"],
+            "img_url": request.form.get("img_url")
+        }
+        mongo.db.recipes.insert_one(recipe)
+        flash("Recipe has been successfully added. Yummy!")
+        return redirect(url_for("all_recipes"))
     return render_template("add.html")
         
 
