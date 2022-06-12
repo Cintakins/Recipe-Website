@@ -1,85 +1,88 @@
 {% extends "base.html" %}
 {% block content %}
-
-<div class="card-panel center-align">
-    <h3>
-        Add Recipe
-    </h3>
+<div class="row">
+    <div class="card-panel center-align red darken-3 white-text col l10 offset-l1">
+        <h3>
+            Add Recipe
+        </h3>
+    </div>
 </div>
-<div class="row card-panel grey lighten-4" id="form-div">
-    <form class="col s12" method="POST" action="{{ url_for('add', user=session['current_user']) }}">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="recipe_name" type="text" class="validate" name="recipe_name">
-                <label for="recipe_name">Recipe Name</label>
+<div class="row">
+    <div class="col l10 offset-l1 card-panel" id="form-div"><br>
+        <form class="col s10 offset-s1" method="POST" action="{{ url_for('add', user=session['current_user']) }}">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="recipe_name" type="text" class="validate" name="recipe_name">
+                    <label for="recipe_name">Recipe Name</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="description" type="text" class="validate" name="description" maxlength="150">
-                <label for="description">Description</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="description" type="text" class="validate" name="description" maxlength="150">
+                    <label for="description">Description</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <label for="ingredients">Ingredients. Add ingredient and press enter to add.</label><br>
-                <div class="chips chips-initial" id="ingredients" name="ingredients"></div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="ingredients">Ingredients. Add ingredient and press enter to add.</label><br>
+                    <div class="chips chips-initial" id="ingredients" name="ingredients"></div>
+                </div>
+                <!-- <div class="input-field col s12">
+                    <input id="ingredients" type="text" class="validate" name="ingredients">
+                    <label for="ingredients">Ingredients</label>
+                </div> -->
             </div>
-            <!-- <div class="input-field col s12">
-                <input id="ingredients" type="text" class="validate" name="ingredients">
-                <label for="ingredients">Ingredients</label>
-            </div> -->
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea" name="instructions1"></textarea>
-                <label for="instructions1">Instructions: Step 1</label>
-                <a class="waves-effect waves-light btn red darken-1 btn-small add-step">
-                    <i class="material-icons right">add_circle_outline</i>Add Step
-                </a>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="textarea1" class="materialize-textarea" name="instructions1"></textarea>
+                    <label for="instructions1">Instructions: Step 1</label>
+                    <a class="waves-effect waves-light btn red darken-1 btn-small add-step">
+                        <i class="material-icons right">add_circle_outline</i>Add Step
+                    </a>
+                </div>
+                <div class="row" id="step-div"></div>
             </div>
-            <div class="row" id="step-div"></div>
-        </div>
-        <div class="input-field col s12 m6">
-            <select class="icons" name="category_name_1">
-                <option value="" disabled selected>Type of Recipe</option>
-                <option value="" data-icon="">
-                    <i class="fa-solid fa-glass"></i>Drink 
-                </option>
-                <option value="">
-                    Meal
-                </option>
-                <option value="">
-                    Dessert
-                </option>
-            </select>
-            <label>Images in select</label>
-        </div>
-        <div class="input-field col s12 m6">
-            <select class="icons" name="category_name_2">
-                <option value="" disabled selected>Suitable for...</option>
-                <option value="" data-icon="images/sample-1.jpg" class="left">
-                    Meat Dish
-                </option>
-                <option value="" data-icon="images/office.jpg" class="left">
-                    Vegetarian
-                </option>
-                <option value="" data-icon="images/yuna.jpg" class="left">
-                    Vegan
-                </option>
-            </select>
-            <label>Images in select</label>
-        </div>
-        <div class="input-field col s12">
-            <input id="img_url" type="url" name="img_url">
-            <label for="img_url">Add image link here</label>
-        </div>
-        <div class="row center-align">
-            <button class="btn waves-effect waves-light red darken-1" type="submit" name="submit_recipe">Add Recipe
-                <i class="material-icons right">send</i>
-            </button>
-        </div>
-    </form>
+            <div class="input-field col s12 m6">
+                <select class="icons" name="category_name_1">
+                    <option value="" disabled selected>Type of Recipe</option>
+                    <option value="" data-icon="">
+                        <i class="fa-solid fa-glass"></i>Drink 
+                    </option>
+                    <option value="">
+                        Meal
+                    </option>
+                    <option value="">
+                        Dessert
+                    </option>
+                </select>
+                <label>Images in select</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <select class="icons" name="category_name_2">
+                    <option value="" disabled selected>Suitable for...</option>
+                    <option value="" data-icon="images/sample-1.jpg" class="left">
+                        Meat Dish
+                    </option>
+                    <option value="" data-icon="images/office.jpg" class="left">
+                        Vegetarian
+                    </option>
+                    <option value="" data-icon="images/yuna.jpg" class="left">
+                        Vegan
+                    </option>
+                </select>
+                <label>Images in select</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="img_url" type="url" name="img_url">
+                <label for="img_url">Add image link here</label>
+            </div>
+            <div class="row center-align">
+                <button class="btn waves-effect waves-light red darken-1" type="submit" name="submit_recipe">Add Recipe
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
 
 {% endblock %}

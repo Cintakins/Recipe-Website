@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="card-panel center-align red darken-3 white-text col l10 offset-l1">
+        <h3>
+            {{ clicked_recipe.recipe_name.title() }}
+        </h3>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col s12 m10 offset-m1 l8 offset-l2">
+        <div class="large-recipe">
+            <div class="recipe-image waves-effect waves-block waves-light center-align">
+                <img class="activator" src="{{ clicked_recipe.img_url }}">
+            </div>
+            <div class="recipe-content">
+                <p id="recipe-description">
+                    {{ clicked_recipe.description }}
+                </p> 
+                <p>{{ clicked_recipe.ingredients }}</p>
+                <p>{{ clicked_recipe.instructions }}</p>
+                {% if session[user]|lower == clicked_recipe.added_by|lower %}
+                <p>
+                    <a class="waves-effect waves-light btn" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
+                </p>
+                <p>
+                    <a class="waves-effect waves-light btn red" href="{{ url_for('delete', recipe_id=recipe._id) }}">Delete</a>
+                </p>
+                {% endif %}
+                <div>
+                    <p>
+                        Recipe added by: {{ clicked_recipe.added_by }}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

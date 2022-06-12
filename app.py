@@ -43,21 +43,18 @@ def all_recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
+@app.route("/one_recipe/<recipe_id>")
+def one_recipe(recipe_id):
+    clicked_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+    return render_template("one_recipe.html", clicked_recipe=clicked_recipe)
+
+
 @app.route("/search", methods=["POST", "GET"])
 def search():
     search_item = request.form.get("search")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": search_item}}))
     return render_template("recipes.html", recipes=recipes)
-
-
-@app.route("/profile_search<user>", methods=["POST", "GET"])
-def profile_search(user):
-    search_item = request.form.get("search")
-    recipes = list(mongo.db.recipes.find({"$text": {"$search": search_item}}))
-
-    user = mongo.db.users.find_one(
-        {"username": session["current_user"]})["username"]
-    return render_template("profile.html", user=user, recipes=recipes)
 
 
 @app.route("/edit/<recipe_id>", methods=["POST", "GET"])
@@ -67,10 +64,9 @@ def edit(recipe_id):
             "recipe_name": request.form.get("recipe_name").lower(),
             "category_name_1": request.form.get("category_name_1"),
             "category_name_2": request.form.get("category_name_2"),
-            "ingredients": request.form.getlist("ingredients").lower(),
-            "instructions": request.form.getlist("instructions"),
+            "ingredients": request.form.get("ingredients").lower(),
+            "instructions": request.form.get("instructions"),
             "description": request.form.get("description"),
-            "added_by": session["current_user"],
             "img_url": request.form.get("img_url")
         }
         mongo.db.recipes.update({"_id": ObjectId(recipe_id)},recipe_dict)
