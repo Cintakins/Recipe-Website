@@ -24,45 +24,46 @@
 
     {% for recipe in recipes %}
         {% if recipe.added_by == user %}
-            <div class="row">
-                <div class="col cards-container s12 m6 l4">
-                    <div class="card large">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <a href="{{ url_for('one_recipe', recipe_id=recipe._id)}}">
-                                <img class="activator" src="{{ recipe.img_url }}">
-                            </a>
-                            <span class="card-title activator grey-text text-darken-4 grey lighten-5 recipe-name">
-                                {{ recipe.recipe_name.title() }}
-                                <i class="material-icons right">more_vert</i>
-                            </span>
-                        </div>
-                        <div class="card-content">
-                            <!-- <span class="card-title activator grey-text text-darken-4">
-                                {{ recipe.recipe_name.title() }}
-                                <i class="material-icons right">more_vert</i>
-                            </span> -->
-                            <p id="recipe-description">
-                                {{ recipe.description }}
-                            </p>
-
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.title() }}<i class="material-icons right">close</i></span>
-                            <p>{{ recipe.ingredients }}</p>
-                            <p>{{ recipe.instructions }}</p>
-                        </div>
-                        <div clas="center-align">
+        <div class="row">
+            <div class="col cards-container s12 m6 l4">
+                <div class="card large">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <a href="{{ url_for('one_recipe', recipe_id=recipe._id)}}">
+                            <img class="activator" src="{{ recipe.img_url }}">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            {{ recipe.recipe_name.title() }}
+                            <i class="material-icons right">more_vert</i>
+                        </span>
+                        <p id="recipe-description" class="truncate">
+                            {{ recipe.description }}
+                        </p> 
+                        <span>
                             <p>
-                                By: {{ recipe.added_by }}
+                                <a class="waves-effect waves-light btn" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
+                            </p>
+                            <p>
+                                <a class="waves-effect waves-light btn red" href="{{ url_for('delete', recipe_id=recipe._id) }}">Delete</a>
+                            </p>
+                        </span>
+                        <div>
+                            <p>
+                                Recipe added by: {{ recipe.added_by }}
                             </p>
                         </div>
-                        {% if session[user]|lower == recipe.added_by|lower %}
-                            <a class="waves-effect waves-light btn" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
-                            <a class="waves-effect waves-light btn" href="{{ url_for('delete', recipe_id=recipe._id) }}">Delete</a>
-                        {% endif %}
+        
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.title() }}<i
+                                class="material-icons right">close</i></span>
+                        <p>{{ recipe.ingredients }}</p>
+                        <p>{{ recipe.instructions }}</p>
                     </div>
                 </div>
             </div>
+        </div>
         {% endif %}
     {% endfor %}
 

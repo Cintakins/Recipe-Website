@@ -64,13 +64,13 @@ def edit(recipe_id):
             "recipe_name": request.form.get("recipe_name").lower(),
             "category_name_1": request.form.get("category_name_1"),
             "category_name_2": request.form.get("category_name_2"),
-            "ingredients": request.form.get("ingredients").lower(),
+            "ingredients": request.form.get("ingredients"),
             "instructions": request.form.get("instructions"),
             "description": request.form.get("description"),
             "img_url": request.form.get("img_url")
         }
         mongo.db.recipes.update({"_id": ObjectId(recipe_id)},recipe_dict)
-    flash("Recipe Updated!")
+        flash("Recipe Updated!")
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template("edit.html", recipe=recipe)
 

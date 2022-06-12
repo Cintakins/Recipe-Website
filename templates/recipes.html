@@ -35,7 +35,7 @@
                     {{ recipe.recipe_name.title() }}
                     <i class="material-icons right">more_vert</i>
                 </span>
-                <p id="recipe-description">
+                <p id="recipe-description" class="truncate">
                     {{ recipe.description }}
                 </p> 
                 {% if session[user]|lower == recipe.added_by|lower %}
