@@ -4,11 +4,6 @@ body {
     background-size: cover;
 } 
 
-.card {
-    display: inline-block;
-    width: 30%;
-}
-
 #form-div {
     opacity: 0.9;
 }

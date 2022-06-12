@@ -151,8 +151,8 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/add/<user>", methods=["POST", "GET"])
-def add(user):
+@app.route("/add", methods=["POST", "GET"])
+def add():
     if request.method == "POST":
             recipe = {
                 "recipe_name": request.form.get("recipe_name").lower(),
@@ -167,15 +167,35 @@ def add(user):
             mongo.db.recipes.insert_one(recipe)
             flash("Recipe has been successfully added. Yummy!")
             return redirect(url_for("all_recipes"))
-
-    if not session["current_user"]:
-        flash("You must log in to add recipes.")
-        return redirect(url_for("login"))
-
-    return render_template("add.html", user=session["current_user"])
+    return render_template("add.html")
         
-    
-    
+
+@app.route("/login_to_add", methods=["POST", "GET"])
+def login_to_add():
+    flash("You must log in to add a recipe")
+    if request.method == "POST":
+        try:
+            username_input = request.form.get("username").lower()
+            existing_username = mongo.db.users.find_one({"username": username_input})
+        except:
+            print("Error accessing the database")
+
+        if existing_username:
+            password_input = request.form.get("password")
+            if check_password_hash(existing_username["password"], password_input):
+                session["current_user"] = username_input
+                full_name = existing_username["first_name"] + " " + existing_username["last_name"]
+                flash(f"Welcome back {full_name.title()}")
+                return redirect(url_for("add"))
+
+            else:
+                flash("Whoops! Incorrect username or password.")
+                return redirect(url_for("login_to_add"))
+
+        else:
+            flash("Whoops! Incorrect username or password.")
+            return redirect(url_for("login_to_add"))
+    return render_template("login_to_add.html")
 
 
 # code from task-manager min project
