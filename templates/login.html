@@ -1,39 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="card-panel center-align>
+<div class="card-panel center-align">
     <h3>
         Log In
     </h3>
 </div>
     <div class="row">
-    <form class="col s6 offset-m3" method="post" action="{{ url_for('login') }}">
-        <div class="row">
-            <div class="input-field col s6 offset-m3">
-                <input placeholder="Username" id="username" type="text" class="validate" name="username" minlength="3" maxlength="16" required>
-                <label for="username">Username</label>
+        <form class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 login-form" method="post" action="{{ url_for('login') }}">
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
+                    <input placeholder="Username" id="username" type="text" class="validate" name="username" minlength="3" maxlength="16" required>
+                    <label for="username">Username</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6 offset-m3">
-                <input id="password" type="password" class="validate" name="password" minlength="6" maxlength="16" required>
-                <label for="password">Password</label>
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
+                    <input id="password" type="password" class="validate" name="password" minlength="6" maxlength="16" required>
+                    <label for="password">Password</label>
+                </div>
             </div>
-        </div>
-        <div class="row center-align">
-            <button class="btn waves-effect waves-light" type="submit" name="login">Log In
-                <i class="material-icons right">send</i>
+            <div class="row center-align">
+                <button class="btn waves-effect waves-light red darken-1" type="submit" name="login">Log In
+                    <i class="material-icons right">send</i>
                 </button>
-        </div>
-    </form>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <p class="center-align">
-                Or register
-                <a href="{{ url_for('register') }}">here</a>
-            </p>
-        </div>
+            </div>
+            <div class="col s12">
+                <p class="center-align">
+                    Or register
+                    <a href="{{ url_for('register') }}">here</a>
+                </p>
+            </div>
+        </form>
     </div>
 
 {% endblock %}

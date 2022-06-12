@@ -39,15 +39,25 @@ def home():
 
 @app.route("/all_recipes")
 def all_recipes():
-    recipes = mongo.db.recipes.find()
+    recipes = list(mongo.db.recipes.find())
     return render_template("recipes.html", recipes=recipes)
 
 
 @app.route("/search", methods=["POST", "GET"])
 def search():
     search_item = request.form.get("search")
-    recipes = mongo.db.recipes.find({"$text": {"$search": search_item}})
+    recipes = list(mongo.db.recipes.find({"$text": {"$search": search_item}}))
     return render_template("recipes.html", recipes=recipes)
+
+
+@app.route("/profile_search<user>", methods=["POST", "GET"])
+def profile_search(user):
+    search_item = request.form.get("search")
+    recipes = list(mongo.db.recipes.find({"$text": {"$search": search_item}}))
+
+    user = mongo.db.users.find_one(
+        {"username": session["current_user"]})["username"]
+    return render_template("profile.html", user=user, recipes=recipes)
 
 
 @app.route("/edit/<recipe_id>", methods=["POST", "GET"])

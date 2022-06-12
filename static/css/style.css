@@ -11,3 +11,16 @@ body {
 .recipe-name {
     opacity: 0.8;
 }
+
+.login-form {
+    background-color: white;
+    opacity: 0.8;
+}
+
+.card-panel {
+    opacity: 0.9;
+}
+
+.no-results {
+    opacity: 0.8;
+}

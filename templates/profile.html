@@ -6,46 +6,70 @@
         {{ user.title() }}'s Profile
     </h3>
 </div>
-    {% for recipe in recipes %}
-    {% if recipe.added_by == user %}
-    <div class="row">
-        <div class="col cards-container s12 m6 l4">
-            <div class="card large">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="{{ recipe.img_url }}">
-                    <span class="card-title activator grey-text text-darken-4 grey lighten-5 recipe-name">
-                        {{ recipe.recipe_name.title() }}
-                        <i class="material-icons right">more_vert</i>
-                    </span>
-                </div>
-                <div class="card-content">
-                    <!-- <span class="card-title activator grey-text text-darken-4">
-                        {{ recipe.recipe_name.title() }}
-                        <i class="material-icons right">more_vert</i>
-                    </span> -->
-                    <p id="recipe-description">
-                        {{ recipe.description }}
-                    </p>
-
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.title() }}<i class="material-icons right">close</i></span>
-                    <p>{{ recipe.ingredients }}</p>
-                    <p>{{ recipe.instructions }}</p>
-                </div>
-                <div clas="center-align">
-                    <p>
-                        By: {{ recipe.added_by }}
-                    </p>
-                </div>
-                {% if session[user]|lower == recipe.added_by|lower %}
-                    <a class="waves-effect waves-light btn" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
-                    <a class="waves-effect waves-light btn" href="{{ url_for('delete', recipe_id=recipe._id) }}">Delete</a>
-                {% endif %}
+<div class="row center-align">
+    <form class="col s12" action="{{ url_for('profile_search') }}" method="POST">
+        <div class="row">
+            <div class="input-field col s10 m6 offset-s1 offset-m3">
+                <input id="search" type="text" class="validate" name="search" required>
+                <label for="search">Search Recipes</label>
+                <button class="btn waves-effect waves-light red darken-1" type="submit" name="action">Search My Recipes
+                    <i class="material-icons left">search</i>
+                </button>
             </div>
         </div>
-    </div>
-    {% endif %}
+    </form>
+</div>
+
+    {% for recipe in recipes %}
+        {% if recipe.added_by == user %}
+            {% if recipe %}
+                <div class="row">
+                    <div class="col cards-container s12 m6 l4">
+                        <div class="card large">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="{{ recipe.img_url }}">
+                                <span class="card-title activator grey-text text-darken-4 grey lighten-5 recipe-name">
+                                    {{ recipe.recipe_name.title() }}
+                                    <i class="material-icons right">more_vert</i>
+                                </span>
+                            </div>
+                            <div class="card-content">
+                                <!-- <span class="card-title activator grey-text text-darken-4">
+                                    {{ recipe.recipe_name.title() }}
+                                    <i class="material-icons right">more_vert</i>
+                                </span> -->
+                                <p id="recipe-description">
+                                    {{ recipe.description }}
+                                </p>
+
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.title() }}<i class="material-icons right">close</i></span>
+                                <p>{{ recipe.ingredients }}</p>
+                                <p>{{ recipe.instructions }}</p>
+                            </div>
+                            <div clas="center-align">
+                                <p>
+                                    By: {{ recipe.added_by }}
+                                </p>
+                            </div>
+                            {% if session[user]|lower == recipe.added_by|lower %}
+                                <a class="waves-effect waves-light btn" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
+                                <a class="waves-effect waves-light btn" href="{{ url_for('delete', recipe_id=recipe._id) }}">Delete</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="row">
+                    <div class="card-panel center-align col s12 m8 offset-m2 l4 offset-l4 no-results">
+                        <h5 class="red-text">
+                            Sorry. No Recipes were found.
+                        </h5>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
     {% endfor %}
 
 {% endblock %}
