@@ -42,13 +42,18 @@
                         </p> 
                         <br>
                         <span>
-                            <p>
-                                <a class="waves-effect waves-light btn" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
-                            </p>
-                            <p>
-                                <a class="waves-effect waves-light btn red" href="{{ url_for('delete', recipe_id=recipe._id) }}">Delete</a>
-                            </p>
+                                <a class="waves-effect waves-light btn small" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
+                                <a class="waves-effect waves-light btn red small modal-trigger" href="#modal1">Delete</a>
                         </span>
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                              <p>Are you sure you want to delete this recipe?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
+                              <a href="{{ url_for('delete', recipe_id=recipe._id) }}" class="modal-close waves-effect waves-green btn-flat">Yes</a>
+                            </div>
+                          </div>
                         <div>
                             <p>
                                 Recipe added by: {{ recipe.added_by }}

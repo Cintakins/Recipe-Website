@@ -64,7 +64,7 @@ def edit(recipe_id):
             "recipe_name": request.form.get("recipe_name").lower(),
             "category_name_1": request.form.get("category_name_1"),
             "category_name_2": request.form.get("category_name_2"),
-            "ingredients": request.form.getlist("ingredients"),
+            "ingredients": request.form.get("ingredients"),
             "instructions": request.form.get("instructions"),
             "description": request.form.get("description"),
             "img_url": request.form.get("img_url")
@@ -77,7 +77,7 @@ def edit(recipe_id):
 
 @app.route("/delete/<recipe_id>")
 def delete(recipe_id):
-    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    mongo.db.recipes.delete_one({"_id": ObjectId(recipe_id)})
     flash("Recipe has been deleted.")
     return redirect("recipes.html")
 
@@ -171,17 +171,13 @@ def register():
 @app.route("/add", methods=["POST", "GET"])
 def add():
     if request.method == "POST":
-        ingredients = []
-        chips = request.form.get("ingredients")
-        for chip in chips:
-            ingredients.append(chip)
         
         recipe = {
             "recipe_name": request.form.get("recipe_name").lower(),
             "category_name_1": request.form.get("category_name_1"),
             "category_name_2": request.form.get("category_name_2"),
-            "ingredients": ingredients,
-            "instructions": request.form.getlist("instructions"),
+            "ingredients": request.form.getlist('ingredients'),
+            "instructions": request.form.get("instructions"),
             "description": request.form.get("description"),
             "added_by": session["current_user"],
             "img_url": request.form.get("img_url")
