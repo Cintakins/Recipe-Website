@@ -28,3 +28,7 @@ body {
 #step-div {
     display: none;
 } 
+
+select {
+    font-family: 'FontAwesome', 'Second Font name'
+  }

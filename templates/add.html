@@ -34,47 +34,48 @@
             </div>
             <div class="row">
                 <div class="input-field col s12" id="step-div">
-                    <textarea id="textarea1" class="materialize-textarea" name="instructions"></textarea>
-                    <label for="instructions1">Instructions: Step 1</label>
+                    <textarea id="instructions" class="materialize-textarea" name="instructions"></textarea>
+                    <label for="instructions">Instructions: Step 1</label>
                 </div>
                 <div id="create-step">
-                    
+
                 </div>
-                <div id="create-step" class="col offset-s0.2">
-                    <a class="waves-effect waves-light btn red darken-1 btn-small" onclick="addStep()">
+                <div class="col offset-s0.2">
+                    <a class="waves-effect waves-light btn blue btn-small" onclick="addStep()">
                         <i class="material-icons right">add_circle_outline</i>Add Step
+                    </a>
+                    <a class="waves-effect waves-light btn red darken-1 btn-small" onclick="removeStep()">
+                        <i class="material-icons right">add_circle_outline</i>Remove Step
                     </a>
                 </div>
             </div>
             <div class="input-field col s12 m6">
                 <select class="icons" name="category_name_1">
                     <option value="" disabled selected>Type of Recipe</option>
-                    <option value="" data-icon="">
-                        <i class="fa-solid fa-glass"></i>Drink 
+                    <option value="">
+                        &#xf804; Drink
                     </option>
                     <option value="">
-                        Meal
+                        &#xe559; Meal
                     </option>
-                    <option value="">
-                        Dessert
+                    <option value="" >
+                        &#xe402 Dessert
                     </option>
                 </select>
-                <label>Images in select</label>
             </div>
             <div class="input-field col s12 m6">
                 <select class="icons" name="category_name_2">
                     <option value="" disabled selected>Suitable for...</option>
-                    <option value="" data-icon="images/sample-1.jpg" class="left">
-                        Meat Dish
+                    <option value="" class="left">
+                        &#xf6d7 Meat Dish
                     </option>
-                    <option value="" data-icon="images/office.jpg" class="left">
-                        Vegetarian
+                    <option value="" class="left">
+                        &#xf81e Vegetarian
                     </option>
-                    <option value="" data-icon="images/yuna.jpg" class="left">
-                        Vegan
+                    <option value="" class="left">
+                        &#xf06c Vegan
                     </option>
                 </select>
-                <label>Images in select</label>
             </div>
             <div class="input-field col s12">
                 <input id="img_url" type="url" name="img_url">

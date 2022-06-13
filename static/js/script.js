@@ -32,3 +32,7 @@ function addStep() {
 	insertHere.parentNode.insertBefore(newSteps,insertHere);
 };
 
+function removeStep() {
+  document.getElementById("create-step").previousSibling.remove()
+}
+
