@@ -64,7 +64,7 @@ def edit(recipe_id):
             "recipe_name": request.form.get("recipe_name").lower(),
             "category_name_1": request.form.get("category_name_1"),
             "category_name_2": request.form.get("category_name_2"),
-            "ingredients": request.form.get("ingredients"),
+            "ingredients": request.form.getlist("ingredients"),
             "instructions": request.form.get("instructions"),
             "description": request.form.get("description"),
             "img_url": request.form.get("img_url")

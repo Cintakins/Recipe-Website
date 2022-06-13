@@ -19,15 +19,19 @@ var counter = 0
 function addStep() {
   counter++;
   var newSteps = document.getElementById('step-div').cloneNode(true);
-  newSteps.id = ''
+  newSteps.id = '';
   newSteps.style.display = 'block';
   var newStep = newSteps.childNodes;
   for (var i=0;i<newStep.length;i++) {
-		var step = newStep[i].name
+		var step = newStep[i].name;
+    console.log(newStep);
 		if (step)
 			newStep[i].name = step + counter;
 	}
-
+  labels = document.getElementsByClassName("instructions-label");
+    for (var i=0; i<labels.length; i++) {
+      labels[i].innerHTML = `Instructions: Step ${i+1}`
+    }
   var insertHere = document.getElementById('create-step');
 	insertHere.parentNode.insertBefore(newSteps,insertHere);
 };
@@ -36,6 +40,12 @@ function removeStep() {
   document.getElementById("create-step").previousSibling.remove();
 }
 
-document.getElementById("add-step").addEventListener("click", addStep);
-document.getElementById("remove-step").addEventListener("click", removeStep);
+addButtons = document.getElementsByClassName("add-step");
+for (var i=0; i<addButtons.length; i++) {
+  addButtons[i].addEventListener("click", addStep);
+}
+removeButtons = document.getElementsByClassName("remove-step")
+for (var i=0; i<removeButtons.length; i++) {
+  removeButtons[i].addEventListener("click", removeStep);
+}
 
