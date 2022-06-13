@@ -33,6 +33,9 @@ function addStep() {
 };
 
 function removeStep() {
-  document.getElementById("create-step").previousSibling.remove()
+  document.getElementById("create-step").previousSibling.remove();
 }
+
+document.getElementById("add-step").addEventListener("click", addStep);
+document.getElementById("remove-step").addEventListener("click", removeStep);
 
