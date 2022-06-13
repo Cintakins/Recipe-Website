@@ -79,7 +79,16 @@ def edit(recipe_id):
 def delete(recipe_id):
     mongo.db.recipes.delete_one({"_id": ObjectId(recipe_id)})
     flash("Recipe has been deleted.")
-    return redirect("recipes.html")
+
+    recipes = mongo.db.recipes.find()
+
+    user = mongo.db.users.find_one(
+        {"username": session["current_user"]})["username"]
+
+    if session["current_user"]:
+        return render_template("profile.html", user=user, recipes=recipes)
+    else:
+        return redirect(url_for("login"))
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -123,10 +132,9 @@ def profile(user):
 
     user = mongo.db.users.find_one(
         {"username": session["current_user"]})["username"]
-    return render_template("profile.html", user=user, recipes=recipes)
 
     if session["current_user"]:
-        return render_template("profile.html", user=user)
+        return render_template("profile.html", user=user, recipes=recipes)
     else:
         return redirect(url_for("login"))
 
