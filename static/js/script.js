@@ -11,9 +11,11 @@ $(document).ready(function () {
   $('select').formSelect();
 })
 
+// code from https://www.quirksmode.org/dom/domform.html
+window.onload = addStep();
+
 var counter = 0
 
-// code from https://www.quirksmode.org/dom/domform.html
 function addStep() {
   counter++;
   var newSteps = document.getElementById('step-div').cloneNode(true);
@@ -21,11 +23,12 @@ function addStep() {
   newSteps.style.display = 'block';
   var newStep = newSteps.childNodes;
   for (var i=0;i<newStep.length;i++) {
-		var step = newField[i].name
+		var step = newStep[i].name
 		if (step)
-			newField[i].name = step + counter;
+			newStep[i].name = step + counter;
 	}
 
   var insertHere = document.getElementById('create-step');
 	insertHere.parentNode.insertBefore(newSteps,insertHere);
 };
+

@@ -24,3 +24,7 @@ body {
 .no-results {
     opacity: 0.8;
 }
+
+#step-div {
+    display: none;
+} 
