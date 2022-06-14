@@ -29,6 +29,10 @@ body {
     display: none;
 } 
 
+#ingredient-div {
+    display: none;
+} 
+
 select {
     font-family: 'FontAwesome', 'Second Font name'
   }

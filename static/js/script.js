@@ -2,6 +2,8 @@ $(document).ready(function () {
   $('.sidenav').sidenav();
   $('#textarea1');
   M.textareaAutoResize($('#textarea1'));
+  $('#textarea2');
+  M.textareaAutoResize($('#textarea2'));
   $('.chips').chips();
   $('.chips-initial').chips({
     data: [{
@@ -26,12 +28,30 @@ $(document).ready(function () {
 
 
 // code from https://www.quirksmode.org/dom/domform.html
-window.onload = addStep();
+window.onload = addStep(), addIngredient();
 
-var counter = 0
+function addIngredient() {
+  var newIngredients = document.getElementById('ingredient-div').cloneNode(true);
+  newIngredients.id = '';
+  newIngredients.style.display = 'block';
+  var insertHere = document.getElementById('create-ingredient');
+	insertHere.parentNode.insertBefore(newIngredients,insertHere);
+};
+
+function removeIngredient() {
+  document.getElementById("create-ingredient").previousSibling.remove();
+}
+
+addIngredientButtons = document.getElementsByClassName("add-ingredient");
+for (var i=0; i<addIngredientButtons.length; i++) {
+  addIngredientButtons[i].addEventListener("click", addIngredient);
+}
+removeIngredientButtons = document.getElementsByClassName("remove-ingredient")
+for (var i=0; i<removeIngredientButtons.length; i++) {
+  removeIngredientButtons[i].addEventListener("click", removeIngredient);
+}
 
 function addStep() {
-  counter++;
   var newSteps = document.getElementById('step-div').cloneNode(true);
   newSteps.id = '';
   newSteps.style.display = 'block';
@@ -54,12 +74,12 @@ function removeStep() {
   document.getElementById("create-step").previousSibling.remove();
 }
 
-addButtons = document.getElementsByClassName("add-step");
-for (var i=0; i<addButtons.length; i++) {
-  addButtons[i].addEventListener("click", addStep);
+addStepButtons = document.getElementsByClassName("add-step");
+for (var i=0; i<addStepButtons.length; i++) {
+  addStepButtons[i].addEventListener("click", addStep);
 }
-removeButtons = document.getElementsByClassName("remove-step")
-for (var i=0; i<removeButtons.length; i++) {
-  removeButtons[i].addEventListener("click", removeStep);
+removeStepButtons = document.getElementsByClassName("remove-step")
+for (var i=0; i<removeStepButtons.length; i++) {
+  removeStepButtons[i].addEventListener("click", removeStep);
 }
 
