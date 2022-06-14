@@ -57,6 +57,13 @@ def search():
     return render_template("recipes.html", recipes=recipes)
 
 
+@app.route("/profile_search<user>", methods=["POST", "GET"])
+def profile_search(user):
+    search_item = request.form.get("search")
+    recipes = list(mongo.db.recipes.find({"$text": {"$search": search_item}}))
+    return render_template("profile.html", recipes=recipes, user=user)
+
+
 @app.route("/edit/<recipe_id>", methods=["POST", "GET"])
 def edit(recipe_id):
     if request.method == "POST":
