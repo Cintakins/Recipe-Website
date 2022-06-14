@@ -21,10 +21,9 @@
     </form>
 </div>
 {% if recipes|length > 0 %}
-{% for recipe in recipes %}
 <div class="row">
-    <!-- s12 m6 l4  -->
-    <div class="col cards-container recipes-card">
+    {% for recipe in recipes %}
+    <div class="col cards-container s12 m6 l4">
         <div class="card large">
             <div class="card-image waves-effect waves-block waves-light">
                 <a href="{{ url_for('one_recipe', recipe_id=recipe._id)}}">
@@ -40,14 +39,14 @@
                     {{ recipe.description }}
                 </p>
                 <br>
-                {% if session[user]|lower == recipe.added_by|lower %}
+                <!-- {% if session[user]|lower == recipe.added_by|lower %}
                 <p>
                     <a class="waves-effect waves-light btn" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
                 </p>
                 <p>
                     <a class="waves-effect waves-light btn red" href="{{ url_for('delete', recipe_id=recipe._id) }}">Delete</a>
                 </p>
-                {% endif %}
+                {% endif %} -->
                 <div>
                     <p>
                         Recipe added by: {{ recipe.added_by }}
@@ -73,8 +72,8 @@
             </div>
         </div>
     </div>
+    {% endfor %}
 </div>
-{% endfor %}
 {% else %}
 <div class="row">
     <div class="card-panel center-align col s12 m8 offset-m2 l4 offset-l4 no-results">
