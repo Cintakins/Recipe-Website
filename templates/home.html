@@ -48,7 +48,9 @@
             <span class="card-title grey-text text-darken-4">{{ todays_recipe.recipe_name.title() }}<i
                     class="material-icons right">close</i></span>
             <p>{{ todays_recipe.ingredients }}</p>
-            <p>{{ todays_recipe.instructions }}</p>
+                {% for instruction in todays_recipe.instructions %}
+                    <p>{{ instruction }}</p>
+                {% endfor %}
         </div>
         <div clas="center-align">
             <p>

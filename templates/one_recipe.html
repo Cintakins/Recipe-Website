@@ -20,7 +20,9 @@
                     {{ clicked_recipe.description }}
                 </p> 
                 <p>{{ clicked_recipe.ingredients }}</p>
-                <p>{{ clicked_recipe.instructions }}</p>
+                {% for instruction in clicked_recipe.instructions %}
+                    <p>{{ instruction }}</p>
+                {% endfor %}
                 {% if session[user]|lower == clicked_recipe.added_by|lower %}
                 <p>
                     <a class="waves-effect waves-light btn" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>

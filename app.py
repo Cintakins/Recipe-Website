@@ -65,7 +65,7 @@ def edit(recipe_id):
             "category_name_1": request.form.get("category_name_1"),
             "category_name_2": request.form.get("category_name_2"),
             "ingredients": request.form.get("ingredients"),
-            "instructions": request.form.get("instructions"),
+            "instructions": request.form.getlist("instructions"),
             "description": request.form.get("description"),
             "img_url": request.form.get("img_url")
         }
@@ -185,7 +185,7 @@ def add():
             "category_name_1": request.form.get("category_name_1"),
             "category_name_2": request.form.get("category_name_2"),
             "ingredients": request.form.getlist('ingredients'),
-            "instructions": request.form.get("instructions"),
+            "instructions": request.form.getlist("instructions"),
             "description": request.form.get("description"),
             "added_by": session["current_user"],
             "img_url": request.form.get("img_url")

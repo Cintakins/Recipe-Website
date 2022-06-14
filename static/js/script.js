@@ -5,12 +5,25 @@ $(document).ready(function () {
   $('.chips').chips();
   $('.chips-initial').chips({
     data: [{
-      tag: 'Ingredient',
-    }]
+    tag: 'Ingredient',
+    }],
+    onChipAdd: ingredientsData(),
   });
   $('select').formSelect();
   $('.modal').modal();
+  ingredients = [];
+  function ingredientsData(){
+    ingredients.append(M.Chips.getInstance($('.chips')).chipsData);
+    console.log(ingredients)
+    for (var i=0; i<ingredients.length; i++) { 
+      newChips = document.getElementsByClassName('.input');
+      for (var i=0; i<newChips.length; i++) {
+        newChips[i].setAttribute('name', 'ingredient');
+      }
+      }
+  };
 })
+
 
 // code from https://www.quirksmode.org/dom/domform.html
 window.onload = addStep();
