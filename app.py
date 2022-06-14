@@ -71,12 +71,12 @@ def edit(recipe_id):
             "recipe_name": request.form.get("recipe_name").lower(),
             "category_name_1": request.form.get("category_name_1"),
             "category_name_2": request.form.get("category_name_2"),
-            "ingredients": request.form.get("ingredients"),
+            "ingredients": request.form.getlist("ingredients"),
             "instructions": request.form.getlist("instructions"),
             "description": request.form.get("description"),
             "img_url": request.form.get("img_url")
         }
-        mongo.db.recipes.update({"_id": ObjectId(recipe_id)},recipe_dict)
+        mongo.db.recipes.update_one({"_id": ObjectId(recipe_id)}, { "$set": recipe_dict})
         flash("Recipe Updated!")
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template("edit.html", recipe=recipe)
@@ -205,7 +205,6 @@ def add():
 
 @app.route("/login_to_add", methods=["POST", "GET"])
 def login_to_add():
-    flash("You must log in to add a recipe")
     if request.method == "POST":
         try:
             username_input = request.form.get("username").lower()

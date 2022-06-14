@@ -38,19 +38,28 @@
                 <i class="material-icons right">more_vert</i>
             </span>
             <span class="card-title activator grey-text text-darken-4">
-                <p class="truncate">
-                {{ todays_recipe.description }}
+                <p class="todays-description">
+                    {{ todays_recipe.description }}
                 </p>
             </span>
 
         </div>
         <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">{{ todays_recipe.recipe_name.title() }}<i
-                    class="material-icons right">close</i></span>
-            <p>{{ todays_recipe.ingredients }}</p>
-                {% for instruction in todays_recipe.instructions %}
-                    <p>{{ instruction }}</p>
-                {% endfor %}
+                    class="material-icons right">close</i>
+            </span>
+            <h6>
+                Ingredients
+            </h6>
+            {% for ingredient in todays_recipe.ingredients %}
+                <p>{{ ingredient }}</p>
+            {% endfor %}
+            <h6>
+                Instructions
+            </h6>
+            {% for instruction in todays_recipe.instructions %}
+                <p>{{ instruction }}</p>
+            {% endfor %}
         </div>
         <div clas="center-align">
             <p>
@@ -59,7 +68,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block scripts %}
 {% endblock %}

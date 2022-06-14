@@ -4,26 +4,8 @@ $(document).ready(function () {
   M.textareaAutoResize($('#textarea1'));
   $('#textarea2');
   M.textareaAutoResize($('#textarea2'));
-  $('.chips').chips();
-  $('.chips-initial').chips({
-    data: [{
-    tag: 'Ingredient',
-    }],
-    onChipAdd: ingredientsData(),
-  });
   $('select').formSelect();
   $('.modal').modal();
-  ingredients = [];
-  function ingredientsData(){
-    ingredients.append(M.Chips.getInstance($('.chips')).chipsData);
-    console.log(ingredients)
-    for (var i=0; i<ingredients.length; i++) { 
-      newChips = document.getElementsByClassName('.input');
-      for (var i=0; i<newChips.length; i++) {
-        newChips[i].setAttribute('name', 'ingredient');
-      }
-      }
-  };
 })
 
 

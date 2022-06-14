@@ -36,3 +36,7 @@ body {
 select {
     font-family: 'FontAwesome', 'Second Font name'
   }
+
+.todays-description {
+    font-size: 1.2rem;
+}
