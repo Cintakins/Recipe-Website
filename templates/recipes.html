@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="row">
-    <div class="card-panel center-align red darken-3 white-text col l10 offset-l1">
+    <div class="card-panel center-align red darken-3 white-text col s10 offset-s1">
         <h3>
             All Recipes
         </h3>
@@ -23,7 +23,8 @@
 {% if recipes|length > 0 %}
 {% for recipe in recipes %}
 <div class="row">
-    <div class="col cards-container s12 m6 l4">
+    <!-- s12 m6 l4  -->
+    <div class="col cards-container recipes-card">
         <div class="card large">
             <div class="card-image waves-effect waves-block waves-light">
                 <a href="{{ url_for('one_recipe', recipe_id=recipe._id)}}">

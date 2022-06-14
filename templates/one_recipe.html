@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="row">
-    <div class="card-panel center-align red darken-3 white-text col l10 offset-l1">
+    <div class="card-panel center-align red darken-3 white-text col s10 offset-s1">
         <h3>
             {{ clicked_recipe.recipe_name.title() }}
         </h3>
@@ -17,14 +17,14 @@
             </div>
             <div class="recipe-content">
                 <p id="recipe-description">
-                    {{ clicked_recipe.description }}
+                    {{- clicked_recipe.description -}}
                 </p> 
                 <span class="col m6">
                     <h6>
                         Ingredients
                     </h6>
                     {% for ingredient in clicked_recipe.ingredients %}
-                        <p class="col m6">{{ ingredient }}</p>
+                        <p class="col m6">{{- ingredient -}}</p>
                     {% endfor %}
                 </span>
                 <span class="container col m6">
@@ -32,7 +32,7 @@
                         Instructions
                     </h6>
                     {% for instruction in clicked_recipe.instructions %}
-                        <p class="col m6 offset-m6">{{ instruction }}</p>
+                        <p class="col m6 offset-m6">{{- instruction -}}</p>
                 </span>
                 {% endfor %}
                 {% if session[user]|lower == clicked_recipe.added_by|lower %}
