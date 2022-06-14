@@ -37,19 +37,12 @@ function addStep() {
   var newSteps = document.getElementById('step-div').cloneNode(true);
   newSteps.id = '';
   newSteps.style.display = 'block';
-  // var newStep = newSteps.childNodes;
-  // for (var i=0;i<newStep.length;i++) {
-	// 	var step = newStep[i].name;
-  //   console.log(newStep);
-	// 	if (step)
-	// 		newStep[i].name = step + counter;
-	// }
   var insertHere = document.getElementById('create-step');
 	insertHere.parentNode.insertBefore(newSteps,insertHere);
-  labels = document.getElementsByClassName("instructions-label");
-    for (var i=0; i<labels.length; i++) {
-      labels[i].innerHTML = `Instructions: Step ${i++}`
-    }
+  // labels = document.getElementsByClassName("instructions-label");
+  //   for (var i=0; i<labels.length; i++) {
+  //     labels[i].innerHTML = `Instructions: Step ${i++}`
+  //   }
 };
 
 function removeStep() {

@@ -49,12 +49,12 @@
             <div class="row">
                 <div class="input-field col s12" id="step-div">
                     <textarea id="textarea1" class="materialize-textarea" name="instructions"></textarea>
-                    <label for="textarea1" class="instructions-label">Instructions: Step 1</label>
+                    <label for="textarea1" class="instructions-label">Instruction Step</label>
                 </div>
                 {% for instruction in recipe.instructions %}
                     <div class="input-field col s12">
                         <textarea id="textarea1" class="materialize-textarea" name="instructions">{{ instruction }}</textarea>
-                        <label for="textarea1" class="instructions-label">Instructions: Step 1</label>
+                        <label for="textarea1" class="instructions-label">Instruction Step</label>
                     </div>
                 {% endfor %}
                 <div id="create-step">
@@ -107,9 +107,10 @@
                 <button class="btn waves-effect waves-light blue" type="submit" name="submit_recipe">Edit Recipe
                     <i class="material-icons right">send</i>
                 </button>
-                <button class="btn waves-effect waves-light red" name="cancel_edit" href="{{ url_for('profile', user=session['current_user']) }}">Cancel
+                <a class="btn waves-effect waves-light red" href="{{ url_for('profile', user=session['current_user']) }}">
+                    Cancel
                     <i class="material-icons right">stop</i>
-                </button>
+                </a>
             </div>
         </form>
     </div>
