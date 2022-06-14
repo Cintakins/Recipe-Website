@@ -24,12 +24,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s3" id="ingredient-div">
+                <div class="input-field col s12 m9" id="ingredient-div">
                     <textarea id="textarea1" class="materialize-textarea" name="ingredients"></textarea>
                     <label for="textarea1">Ingredient</label>
                 </div>
                 {% for ingredient in recipe.ingredients %}
-                <div class="input-field col s3">
+                <div class="input-field col m2">
                     <textarea id="textarea1" class="materialize-textarea" name="ingredients">{{ ingredient }}</textarea>
                     <label for="textarea1">Ingredient</label>
                 </div>
@@ -37,24 +37,24 @@
                 <div id="create-ingredient">
 
                 </div>
-                <div class="col s3">
+                <div class="col s1">
                     <a class="waves-effect waves-light btn blue btn-small add-ingredient">
-                        <i class="material-icons left">add_circle_outline</i> Ingredient
+                        <i class="material-icons left">add_circle_outline</i>
                     </a>
                     <a class="waves-effect waves-light btn red darken-1 btn-small remove-ingredient">
-                        <i class="material-icons left">cancel</i> Ingredient
+                        <i class="material-icons left">cancel</i>
                     </a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row center-align">
                 <div class="input-field col s12" id="step-div">
                     <textarea id="textarea1" class="materialize-textarea" name="instructions"></textarea>
-                    <label for="textarea1" class="instructions-label">Instruction Step</label>
+                    <label for="textarea1" class="instructions-label">Add Step</label>
                 </div>
                 {% for instruction in recipe.instructions %}
                     <div class="input-field col s12">
                         <textarea id="textarea1" class="materialize-textarea" name="instructions">{{ instruction }}</textarea>
-                        <label for="textarea1" class="instructions-label">Instruction Step</label>
+                        <label for="textarea1" class="instructions-label">Add Step</label>
                     </div>
                 {% endfor %}
                 <div id="create-step">

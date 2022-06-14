@@ -4,7 +4,7 @@
 <div class="row">
     <div class="card-panel center-align red darken-3 white-text col l10 offset-l1">
         <h3>
-            {{ user.title() }}'s Profile
+            {{ user.title() }}'s Recipes
         </h3>
     </div>
 </div>
@@ -38,7 +38,7 @@
                                 {{ recipe.recipe_name.title() }}
                                 <i class="material-icons right">more_vert</i>
                             </span>
-                            <p id="recipe-description">
+                            <p class="description">
                                 {{ recipe.description }}
                             </p> 
                             <br>
@@ -65,10 +65,18 @@
                         <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.title() }}<i
                                     class="material-icons right">close</i></span>
-                            <p>{{ recipe.ingredients }}</p>
-                            {% for instruction in recipe.instructions %}
-                                <p>{{ instruction }}</p>
-                            {% endfor %}
+                                <h6>
+                                    Ingredients
+                                </h6>
+                                {% for ingredient in recipe.ingredients %}
+                                    <p>{{ ingredient }}</p>
+                                {% endfor %}
+                                <h6>
+                                    Instructions
+                                </h6>
+                                {% for instruction in recipe.instructions %}
+                                    <p>{{ instruction }}</p>
+                                {% endfor %}
                         </div>
                     </div>
                 </div>

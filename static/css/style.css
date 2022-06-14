@@ -2,6 +2,7 @@ body {
     background-image: url(../images/veg.png);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 } 
 
 #form-div {
@@ -37,6 +38,9 @@ select {
     font-family: 'FontAwesome', 'Second Font name'
   }
 
-.todays-description {
+.home-description {
     font-size: 1.2rem;
+}
+.description {
+    font-size: 1rem;
 }
