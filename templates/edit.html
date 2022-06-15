@@ -70,8 +70,8 @@
                 </div>
             </div>
             <div class="input-field col s12 m6">
-                <select class="icons" name="category_name_1" id=""category_name_1>
-                    <option value="{{ recipe.category_name_1 }}" disabled selected>Type of Recipe</option>
+                <select id="category_name_1" name="category_name_1" id=""category_name_1>
+                    <option value="" disabled selected>Type of Recipe</option>
                     <option value="drink">
                         &#xf804; Drink
                     </option>
@@ -82,11 +82,11 @@
                         &#xe402 Dessert
                     </option>
                 </select>
-                <label>Images in select</label>
+                <label for="category_name_1">Recipe Type</label>
             </div>
             <div class="input-field col s12 m6">
-                <select class="icons" name="category_name_2" is="category_name_2">
-                    <option value="{{ recipe.category_name_2 }}" disabled selected>Suitable for...</option>
+                <select id="category_name_2" name="category_name_2" is="category_name_2">
+                    <option value="" disabled selected>Suitable for...</option>
                     <option value="meat" class="left">
                         &#xf6d7 Meat Dish
                     </option>
@@ -97,7 +97,7 @@
                         &#xf06c Vegan
                     </option>
                 </select>
-                <label>Images in select</label>
+                <label for="category_name_2">Suitability</label>
             </div>
             <div class="input-field col s12">
                 <input id="img_url" type="url" name="img_url" value="{{ recipe.img_url }}">

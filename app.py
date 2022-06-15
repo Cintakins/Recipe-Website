@@ -19,7 +19,7 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-# initializing database
+
 mongo = PyMongo(app)
 
 
@@ -156,8 +156,6 @@ def profile(user):
 def register():
     if request.method == "POST":
 
-    # using names may result in 2 identical users, but wanted to use name for recipe credit. chose to add both.
-
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
     
@@ -240,4 +238,4 @@ def login_to_add():
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
     port=int(os.environ.get("PORT")),
-    debug=True)
+    debug=False)

@@ -17,6 +17,27 @@
                 <p id="recipe-description">
                     {{- clicked_recipe.description -}}
                 </p> 
+                <p> (
+                    {% if clicked_recipe.category_name_2 == "meat" %}
+                    Meat <i class="fa-solid fa-meat"></i>
+                    {% elif clicked_recipe.category_name_2 == "vegetarian" %}
+                    Vegetarian<i class="fa-solid fa-salad"></i>
+                    {% elif clicked_recipe.category_name_2 == "vegan" %}
+                    Vegan <i class="fa-solid fa-leaf"></i>
+                    {% else %}
+                    Yummy
+                    {% endif %}
+                    {% if clicked_recipe.category_name_1 == "drink" %}
+                    Drink <i class="fa-solid fa-glass"></i>
+                    {% elif clicked_recipe.category_name_1 == "meal" %}
+                    Meal <i class="fa-solid fa-plate-utensils"></i>
+                    {% elif clicked_recipe.category_name_1 == "dessert" %}
+                    Dessert <i class="fa-solid fa-cupcake"></i>
+                    {% else %}
+                    food
+                    {% endif %}
+                    )
+                </p>
                 <div class="col m6">
                     <h6>
                         Ingredients
