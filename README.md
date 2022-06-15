@@ -105,7 +105,7 @@ Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` f
 
 ---
 
-Happy coding!
+Table of content:
 
 strategy - Business objectives. whats worth doing. whats being created. value.
 The project is designed to attract users to the web application by providing a service to display recipes and add their own custom recipes. This will attract the type of user who is passionate about cooking and will therefore already be interested in any products the website might offer. Cooking equipment websites can advertise their wares to the user giving them appropriate and optimal exposure. The main focus of the website will be for the recipes and for users to share their expertise, and for those interested in using these recipes, cooking product websites will be displayed for them to click on.
@@ -128,6 +128,9 @@ skeleton - interface, information and navigation design
 surface - visual design
 I chose to use the materialize library as I really like the simplicity and look of the design. I also felt that keeping the design simple would help give me more time to concentrate on the functionality of the web app.
 
+Technologies used:
+
+Testing and Problems:
 
 javascript initializing, used generl init function
 
@@ -137,4 +140,8 @@ the add step and add ingredient buttons created too many steps when loading the 
 
 The font awesome icons did not work in the select box.
 
-the brand-logo title overlapped the content on smaller screens.
+the brand-logo title overlapped the content on smaller screens. Instead of targetting the class, I created an ID for the logo and targetted it with CSS to minimize it for smaller screens.
+
+Deployment:
+
+Credits

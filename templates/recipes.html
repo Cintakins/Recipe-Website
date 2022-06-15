@@ -39,14 +39,6 @@
                     {{ recipe.description }}
                 </p>
                 <br>
-                <!-- {% if session[user]|lower == recipe.added_by|lower %}
-                <p>
-                    <a class="waves-effect waves-light btn" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
-                </p>
-                <p>
-                    <a class="waves-effect waves-light btn red" href="{{ url_for('delete', recipe_id=recipe._id) }}">Delete</a>
-                </p>
-                {% endif %} -->
                 <div>
                     <p>
                         Recipe added by: {{ recipe.added_by }}
@@ -56,19 +48,25 @@
             </div>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.title() }}<i
-                        class="material-icons right">close</i></span>
-                    <h6>
-                        Ingredients
-                    </h6>
-                    {% for ingredient in recipe.ingredients %}
-                        <p>{{ ingredient }}</p>
-                    {% endfor %}
-                    <h6>
-                        Instructions
-                    </h6>
-                    {% for instruction in recipe.instructions %}
-                        <p>{{ instruction }}</p>
-                    {% endfor %}
+                        class="material-icons right">close</i>
+                </span>
+                <h6>
+                    Ingredients
+                </h6>
+                {% for ingredient in recipe.ingredients %}
+                    <p>{{ ingredient }}</p>
+                {% endfor %}
+                <h6>
+                    Instructions
+                </h6>
+                {% for instruction in recipe.instructions %}
+                    <p>{{ instruction }}</p>
+                {% endfor %}
+                <p>
+                    <a href="{{ url_for('one_recipe', recipe_id=recipe._id)}}">
+                        View More...
+                    </a>
+                </p>
             </div>
         </div>
     </div>

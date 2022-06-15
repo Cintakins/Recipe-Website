@@ -19,8 +19,8 @@ body {
     opacity: 0.8;
 }
 
-.card-panel {
-    opacity: 0.8;
+#one-recipe-display {
+    background-color: rgba(255, 255, 255, 0.81);
 }
 
 .no-results {

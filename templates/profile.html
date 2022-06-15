@@ -21,11 +21,10 @@
         </div>
     </form>
 </div>
-<div class="row">
 {% for recipe in recipes %}
     {% if recipe %}
         {% if recipe.added_by == user %}
-            
+            <div class="row">           
                 <div class="col cards-container s12 m6 l4 recipes-card">
                     <div class="card large">
                         <div class="card-image waves-effect waves-block waves-light">
@@ -78,12 +77,16 @@
                             {% for instruction in recipe.instructions %}
                                 <p>{{ instruction }}</p>
                             {% endfor %}
+                            <p>
+                                <a href="{{ url_for('one_recipe', recipe_id=recipe._id)}}">
+                                    View More...
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-    <!-- </div> -->
     {% else %}
         <div class="row">
             <div class="card-panel center-align col s12 m8 offset-m2 l4 offset-l4 no-results">

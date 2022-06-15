@@ -60,6 +60,11 @@
             {% for instruction in todays_recipe.instructions %}
                 <p>{{ instruction }}</p>
             {% endfor %}
+            <p>
+                <a href="{{ url_for('one_recipe', recipe_id=todays_recipe._id)}}">
+                    View More...
+                </a>
+            </p>
         </div>
         <div clas="center-align">
             <p>

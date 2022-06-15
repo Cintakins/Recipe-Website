@@ -24,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="input-field col m9 s12" id="ingredient-div">
-                    <textarea id="textarea1" class="materialize-textarea" name="ingredients"></textarea>
+                    <textarea id="textarea1" class="materialize-textarea" name="ingredients" class="validate"></textarea>
                     <label for="textarea1">Ingredient</label>
                 </div>
                 <div id="create-ingredient">
@@ -41,7 +41,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12" id="step-div">
-                    <textarea id="textarea2" class="materialize-textarea" name="instructions"></textarea>
+                    <textarea id="textarea2" class="materialize-textarea" name="instructions" class="validate"></textarea>
                     <label for="textarea2" class="instructions-label">Instruction Step</label>
                 </div>
                 <div id="create-step">
@@ -57,31 +57,33 @@
                 </div>
             </div>
             <div class="input-field col s12 m6">
-                <select class="icons" name="category_name_1">
-                    <option value="" disabled selected>Type of Recipe</option>
-                    <option value="">
+                <select id="category_name_1" name="category_name_1">
+                    <option value="" disabled selected>Choose a Category</option>
+                    <option value="drink">
                         &#xf804; Drink
                     </option>
-                    <option value="">
+                    <option value="meal">
                         &#xe559; Meal
                     </option>
-                    <option value="" >
+                    <option value="dessert" >
                         &#xe402 Dessert
                     </option>
+                    <label for="category_name_1">Recipe Type</label>
                 </select>
             </div>
             <div class="input-field col s12 m6">
-                <select class="icons" name="category_name_2">
-                    <option value="" disabled selected>Suitable for...</option>
-                    <option value="" class="left">
+                <select id="category_name_2" name="category_name_2">
+                    <option value="" disabled selected>Choose a Category</option>
+                    <option value="meat" class="left">
                         &#xf6d7 Meat Dish
                     </option>
-                    <option value="" class="left">
+                    <option value="vegetarian" class="left">
                         &#xf81e Vegetarian
                     </option>
-                    <option value="" class="left">
+                    <option value="vegan" class="left">
                         &#xf06c Vegan
                     </option>
+                    <label for="category_name_2">Suitability</label>
                 </select>
             </div>
             <div class="input-field col s12">
@@ -89,7 +91,7 @@
                 <label for="img_url">Add image link here</label>
             </div>
             <div class="row center-align">
-                <button class="btn waves-effect waves-light red darken-1" type="submit" name="submit_recipe">Add Recipe
+                <button class="btn waves-effect waves-light red darken-1" type="submit">Add Recipe
                     <i class="material-icons right">send</i>
                 </button>
             </div>
