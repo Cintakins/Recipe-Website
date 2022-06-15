@@ -50,3 +50,7 @@ select {
     h3 {
         font-size: 2rem;
     }
+    #brand-logo {
+        font-size: 1.5rem;
+    }
+}
