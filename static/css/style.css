@@ -47,6 +47,9 @@ select {
 }
 
 @media only screen and (max-width: 600px) {
+    body {
+        background-image: url(../images/smallveg.png);
+    }
     h3 {
         font-size: 2rem;
     }

@@ -13,7 +13,7 @@
         <form class="col s10 offset-s1" method="POST" action="{{ url_for('edit', recipe_id=recipe._id) }}">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="recipe_name" type="text" class="validate" name="recipe_name" value="{{ recipe.recipe_name }}">
+                    <input id="recipe_name" type="text" class="validate" name="recipe_name" maxlength="20" value="{{ recipe.recipe_name }}">
                     <label for="recipe_name">Recipe Name</label>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <label for="textarea1">Ingredient</label>
                 </div>
                 {% for ingredient in recipe.ingredients %}
-                <div class="input-field col m2">
+                <div class="input-field col m9 s12">
                     <textarea id="textarea1" class="materialize-textarea" name="ingredients">{{ ingredient }}</textarea>
                     <label for="textarea1">Ingredient</label>
                 </div>
@@ -70,30 +70,30 @@
                 </div>
             </div>
             <div class="input-field col s12 m6">
-                <select class="icons" name="category_name_1">
+                <select class="icons" name="category_name_1" id=""category_name_1>
                     <option value="{{ recipe.category_name_1 }}" disabled selected>Type of Recipe</option>
-                    <option value="">
+                    <option value="drink">
                         &#xf804; Drink
                     </option>
-                    <option value="">
+                    <option value="meal">
                         &#xe559; Meal
                     </option>
-                    <option value="" >
+                    <option value="dessert" >
                         &#xe402 Dessert
                     </option>
                 </select>
                 <label>Images in select</label>
             </div>
             <div class="input-field col s12 m6">
-                <select class="icons" name="category_name_2">
+                <select class="icons" name="category_name_2" is="category_name_2">
                     <option value="{{ recipe.category_name_2 }}" disabled selected>Suitable for...</option>
-                    <option value="" class="left">
+                    <option value="meat" class="left">
                         &#xf6d7 Meat Dish
                     </option>
-                    <option value="" class="left">
+                    <option value="vegetarian" class="left">
                         &#xf81e Vegetarian
                     </option>
-                    <option value="" class="left">
+                    <option value="vegan" class="left">
                         &#xf06c Vegan
                     </option>
                 </select>

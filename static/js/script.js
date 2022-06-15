@@ -9,8 +9,7 @@ $(document).ready(function () {
 })
 
 
-// code from https://www.quirksmode.org/dom/domform.html
-window.onload = addStep(), addIngredient();
+// code inspired by https://www.quirksmode.org/dom/domform.html
 
 function addIngredient() {
   var newIngredients = document.getElementById('ingredient-div').cloneNode(true);
@@ -39,10 +38,6 @@ function addStep() {
   newSteps.style.display = 'block';
   var insertHere = document.getElementById('create-step');
 	insertHere.parentNode.insertBefore(newSteps,insertHere);
-  // labels = document.getElementsByClassName("instructions-label");
-  //   for (var i=0; i<labels.length; i++) {
-  //     labels[i].innerHTML = `Instructions: Step ${i++}`
-  //   }
 };
 
 function removeStep() {

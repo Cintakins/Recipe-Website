@@ -136,9 +136,9 @@ javascript initializing, used generl init function
 
 wanted to use route in app.py to redirect potential user to login page when they click "add recipe" if they are not logged in. 
 
-the add step and add ingredient buttons created too many steps when loading the edit page, so there were more steps than the existing values given.
+the add step and add ingredient buttons created too many steps when loading the edit page, so there were more steps than the existing values given. I created seperate functions for the different pages add.html and edit.html hoping that the window.onload method won't effect the edit.html page, but there were still problems.
 
-The font awesome icons did not work in the select box.
+The font awesome icons did not work in the select box. I think this is due to it being the free version.
 
 the brand-logo title overlapped the content on smaller screens. Instead of targetting the class, I created an ID for the logo and targetted it with CSS to minimize it for smaller screens.
 

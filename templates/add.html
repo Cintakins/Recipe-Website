@@ -12,7 +12,7 @@
         <form class="col s10 offset-s1" method="POST" action="{{ url_for('add', user=session['current_user']) }}">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="recipe_name" type="text" class="validate" name="recipe_name">
+                    <input id="recipe_name" type="text" class="validate" name="recipe_name" maxlength="20">
                     <label for="recipe_name">Recipe Name</label>
                 </div>
             </div>
@@ -98,5 +98,9 @@
         </form>
     </div>
 </div>
-
+{% endblock %}
+{% block scripts %}
+    <script>
+        window.onload = addStep(), addIngredient();
+    </script>
 {% endblock %}
