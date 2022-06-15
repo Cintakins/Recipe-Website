@@ -2,8 +2,6 @@ $(document).ready(function () {
   $('.sidenav').sidenav();
   $('#textarea1');
   M.textareaAutoResize($('#textarea1'));
-  $('#textarea2');
-  M.textareaAutoResize($('#textarea2'));
   $('select').formSelect();
   $('.modal').modal();
 })

@@ -13,13 +13,13 @@
         <form class="col s10 offset-s1" method="POST" action="{{ url_for('edit', recipe_id=recipe._id) }}">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="recipe_name" type="text" class="validate" name="recipe_name" maxlength="20" value="{{ recipe.recipe_name }}">
+                    <input id="recipe_name" type="text" class="validate" name="recipe_name"  value="{{ recipe.recipe_name }}">
                     <label for="recipe_name">Recipe Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="description" type="text" class="validate" name="description" maxlength="150" value="{{ recipe.description }}">
+                    <input id="description" type="text" class="validate" name="description" maxlength="200" value="{{ recipe.description }}">
                     <label for="description">Description</label>
                 </div>
             </div>

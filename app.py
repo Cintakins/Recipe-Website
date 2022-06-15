@@ -46,8 +46,13 @@ def all_recipes():
 @app.route("/one_recipe/<recipe_id>")
 def one_recipe(recipe_id):
     clicked_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    websites = mongo.db.websites.find()
+    websites_list = []
+    for website in websites:
+        websites_list.append(website)
+    website_add = random.choice(websites_list)
 
-    return render_template("one_recipe.html", clicked_recipe=clicked_recipe)
+    return render_template("one_recipe.html", clicked_recipe=clicked_recipe, website_add=website_add)
 
 
 @app.route("/search", methods=["POST", "GET"])

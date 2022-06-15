@@ -38,8 +38,29 @@
                 <i class="material-icons right">more_vert</i>
             </span>
             <span class="card-title activator grey-text text-darken-4">
-                <p class="home-description">
+                <p class="home-description truncate">
                     {{ todays_recipe.description }}
+                </p>
+                <p class="home-description"> (
+                    {% if todays_recipe.category_name_2 == "meat" %}
+                    Meat <i class="fa-solid fa-meat"></i>
+                    {% elif todays_recipe.category_name_2 == "vegetarian" %}
+                    Vegetarian<i class="fa-solid fa-salad"></i>
+                    {% elif todays_recipe.category_name_2 == vegan %}
+                    Vegan <i class="fa-solid fa-leaf"></i>
+                    {% else %}
+                    Yummy
+                    {% endif %}
+                    {% if todays_recipe.category_name_1 == "drink" %}
+                    Drink <i class="fa-solid fa-glass"></i>
+                    {% elif todays_recipe.category_name_1 == "meal" %}
+                    Meal <i class="fa-solid fa-plate-utensils"></i>
+                    {% elif todays_recipe.category_name_1 == dessert %}
+                    Dessert <i class="fa-solid fa-cupcake"></i>
+                    {% else %}
+                    food
+                    {% endif %}
+                    )
                 </p>
             </span>
 
@@ -47,6 +68,9 @@
         <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">{{ todays_recipe.recipe_name.title() }}<i
                     class="material-icons right">close</i>
+                <p class="description">
+                    {{ todays_recipe.description }}
+                </p>
             </span>
             <h6>
                 Ingredients

@@ -37,10 +37,30 @@
                             {{ recipe.recipe_name.title() }}
                             <i class="material-icons right">more_vert</i>
                         </span>
-                        <p class="description">
+                        <p class="description truncate">
                             {{ recipe.description }}
                         </p> 
-                        <br>
+                        <p> (
+                            {% if recipe.category_name_2 == "meat" %}
+                            Meat <i class="fa-solid fa-meat"></i>
+                            {% elif recipe.category_name_2 == "vegetarian" %}
+                            Vegetarian<i class="fa-solid fa-salad"></i>
+                            {% elif recipe.category_name_2 == vegan %}
+                            Vegan <i class="fa-solid fa-leaf"></i>
+                            {% else %}
+                            Yummy
+                            {% endif %}
+                            {% if recipe.category_name_1 == "drink" %}
+                            Drink <i class="fa-solid fa-glass"></i>
+                            {% elif recipe.category_name_1 == "meal" %}
+                            Meal <i class="fa-solid fa-plate-utensils"></i>
+                            {% elif recipe.category_name_1 == dessert %}
+                            Dessert <i class="fa-solid fa-cupcake"></i>
+                            {% else %}
+                            food
+                            {% endif %}
+                            )
+                        </p>
                         <span>
                                 <a class="waves-effect waves-light btn small blue" href="{{ url_for('edit', recipe_id=recipe._id) }}">Edit</a>
                                 <a class="waves-effect waves-light btn red small modal-trigger" href="#modal1">Delete</a>
@@ -64,6 +84,9 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.title() }}<i
                                 class="material-icons right">close</i>
+                            <p class="description">
+                                {{ recipe.description }}
+                            </p>
                         </span>
                         <h6>
                             Ingredients

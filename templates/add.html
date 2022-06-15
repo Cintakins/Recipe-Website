@@ -12,13 +12,13 @@
         <form class="col s10 offset-s1" method="POST" action="{{ url_for('add', user=session['current_user']) }}">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="recipe_name" type="text" class="validate" name="recipe_name" maxlength="20">
+                    <input id="recipe_name" type="text" class="validate" name="recipe_name">
                     <label for="recipe_name">Recipe Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="description" type="text" class="validate" name="description" maxlength="150">
+                    <input id="description" type="text" class="validate" name="description" maxlength="200">
                     <label for="description">Description</label>
                 </div>
             </div>
