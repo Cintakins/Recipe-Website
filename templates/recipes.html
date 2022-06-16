@@ -1,74 +1,74 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="row">
-    <div class="card-panel center-align red darken-3 white-text col s10 offset-s1">
-        <h3>
-            All Recipes
-        </h3>
-    </div>
-</div>
-<div class="row center-align">
-    <form class="col s12" action="{{ url_for('search') }}" method="POST">
-        <div class="row">
-            <div class="input-field col s10 m6 offset-s1 offset-m3">
-                <input id="search" type="text" class="validate" name="search" required>
-                <label for="search">Search Recipes</label>
-                <button class="btn waves-effect waves-light red darken-1" type="submit" name="action">Search
-                    <i class="material-icons left">search</i>
-                </button>
-            </div>
+    <div class="row">
+        <div class="card-panel center-align red darken-3 white-text col s10 offset-s1">
+            <h3>
+                All Recipes
+            </h3>
         </div>
-    </form>
-</div>
-{% if recipes|length > 0 %}
-<div class="row">
-    {% for recipe in recipes %}
-    <div class="col cards-container s12 m6 l4">
-        <div class="card large">
-            <div class="card-image waves-effect waves-block waves-light">
-                <a href="{{ url_for('one_recipe', recipe_id=recipe._id)}}">
-                    <img class="activator" src="{{ recipe.img_url }}">
-                </a>
-            </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">
-                    {{ recipe.recipe_name.title() }}
-                    <i class="material-icons right">more_vert</i>
-                </span>
-                <p class="description truncate">
-                    {{ recipe.description }}
-                </p>
-                <p> (
-                    {% if recipe.category_name_2 == "meat" %}
-                    Meat <i class="fa-solid fa-meat"></i>
-                    {% elif recipe.category_name_2 == "vegetarian" %}
-                    Vegetarian<i class="fa-solid fa-salad"></i>
-                    {% elif recipe.category_name_2 == "vegan" %}
-                    Vegan <i class="fa-solid fa-leaf"></i>
-                    {% else %}
-                    Yummy
-                    {% endif %}
-                    {% if recipe.category_name_1 == "drink" %}
-                    Drink <i class="fa-solid fa-glass"></i>
-                    {% elif recipe.category_name_1 == "meal" %}
-                    Meal <i class="fa-solid fa-plate-utensils"></i>
-                    {% elif recipe.category_name_1 == "dessert" %}
-                    Dessert <i class="fa-solid fa-cupcake"></i>
-                    {% else %}
-                    food
-                    {% endif %}
-                    )
-                </p>
-                <div>
-                    <p>
-                        Recipe added by: {{ recipe.added_by }}
-                    </p>
+    </div>
+    <div class="row center-align">
+        <form class="col s12" action="{{ url_for('search') }}" method="POST">
+            <div class="row">
+                <div class="input-field col s10 m6 offset-s1 offset-m3">
+                    <input id="search" type="text" class="validate" name="search" required>
+                    <label for="search">Search Recipes</label>
+                    <button class="btn waves-effect waves-light red darken-1" type="submit" name="action">Search
+                        <i class="material-icons left">search</i>
+                    </button>
                 </div>
-
             </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.title() }}<i
-                        class="material-icons right">close</i>
+        </form>
+    </div>
+    {% if recipes|length > 0 %}
+    <div class="row">
+        {% for recipe in recipes %}
+        <div class="col cards-container s12 m6 l4">
+            <div class="card large">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <a href="{{ url_for('one_recipe', recipe_id=recipe._id)}}">
+                        <img class="activator" src="{{ recipe.img_url }}">
+                    </a>
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">
+                        {{ recipe.recipe_name.title() }}
+                        <i class="material-icons right">more_vert</i>
+                    </span>
+                    <p class="description truncate">
+                        {{ recipe.description }}
+                    </p>
+                    <p> (
+                        {% if recipe.category_name_2 == "meat" %}
+                        Meat <i class="fa-solid fa-meat"></i>
+                        {% elif recipe.category_name_2 == "vegetarian" %}
+                        Vegetarian<i class="fa-solid fa-salad"></i>
+                        {% elif recipe.category_name_2 == "vegan" %}
+                        Vegan <i class="fa-solid fa-leaf"></i>
+                        {% else %}
+                        Yummy
+                        {% endif %}
+                        {% if recipe.category_name_1 == "drink" %}
+                        Drink <i class="fa-solid fa-glass"></i>
+                        {% elif recipe.category_name_1 == "meal" %}
+                        Meal <i class="fa-solid fa-plate-utensils"></i>
+                        {% elif recipe.category_name_1 == "dessert" %}
+                        Dessert <i class="fa-solid fa-cupcake"></i>
+                        {% else %}
+                        food
+                        {% endif %}
+                        )
+                    </p>
+                    <div>
+                        <p>
+                            Recipe added by: {{ recipe.added_by }}
+                        </p>
+                    </div>
+
+                </div>
+                <div class="card-reveal">
+                    <div class="card-title grey-text text-darken-4">{{ recipe.recipe_name.title() }}<i
+                            class="material-icons right">close</i>
                         <p class="description">
                             {{ recipe.description }}
                         </p>
@@ -88,37 +88,37 @@
                             Vegan <i class="fa-solid fa-leaf"></i>
                             {% endif %}
                         </p>
-                </span>
-                <h6>
-                    Ingredients
-                </h6>
-                {% for ingredient in recipe.ingredients %}
-                    <p>{{ ingredient }}</p>
-                {% endfor %}
-                <h6>
-                    Instructions
-                </h6>
-                {% for instruction in recipe.instructions %}
-                    <p>{{ instruction }}</p>
-                {% endfor %}
-                <p>
-                    <a href="{{ url_for('one_recipe', recipe_id=recipe._id)}}">
-                        View More...
-                    </a>
-                </p>
+                        </div>
+                    <h6>
+                        Ingredients
+                    </h6>
+                    {% for ingredient in recipe.ingredients %}
+                        <p>{{ ingredient }}</p>
+                    {% endfor %}
+                    <h6>
+                        Instructions
+                    </h6>
+                    {% for instruction in recipe.instructions %}
+                        <p>{{ instruction }}</p>
+                    {% endfor %}
+                    <p>
+                        <a href="{{ url_for('one_recipe', recipe_id=recipe._id)}}">
+                            View More...
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
-{% else %}
-<div class="row">
-    <div class="card-panel center-align col s12 m8 offset-m2 l4 offset-l4 no-results">
-        <h5 class="red-text">
-            Sorry. No Recipes were found.
-        </h5>
+    {% else %}
+    <div class="row">
+        <div class="card-panel center-align col s12 m8 offset-m2 l4 offset-l4 no-results">
+            <h5 class="red-text">
+                Sorry. No Recipes were found.
+            </h5>
+        </div>
     </div>
-</div>
 {% endif %}
 
 {% endblock %}

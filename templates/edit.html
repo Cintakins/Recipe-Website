@@ -29,10 +29,10 @@
                     <label for="textarea1">Ingredient</label>
                 </div>
                 {% for ingredient in recipe.ingredients %}
-                <div class="input-field col m9 s12">
-                    <textarea id="textarea1" class="materialize-textarea" name="ingredients">{{ ingredient }}</textarea>
-                    <label for="textarea1">Ingredient</label>
-                </div>
+                    <div class="input-field col m9 s12">
+                        <textarea id="textarea1" class="materialize-textarea" name="ingredients">{{ ingredient }}</textarea>
+                        <label for="textarea1">Ingredient</label>
+                    </div>
                 {% endfor %}
                 <div id="create-ingredient">
 
@@ -58,7 +58,6 @@
                     </div>
                 {% endfor %}
                 <div id="create-step">
-
                 </div>
                 <div class="col offset-s0.2">
                     <a class="waves-effect waves-light btn blue btn-small add-step">

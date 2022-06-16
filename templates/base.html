@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
         type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../static/images/favicon.png">
 
     <title>Delicious Recipes</title>
@@ -20,18 +20,34 @@
     <header>
         <nav>
             <div class="nav-wrapper red darken-3">
-                <a href="{{ url_for('home') }}" class="brand-logo" id="brand-logo">Delicious Recipes</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="{{ url_for('home') }}" class="brand-logo" id="brand-logo">
+                    Delicious Recipes
+                </a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('all_recipes') }}">All Recipes</a></li>
+                    <li>
+                        <a href="{{ url_for('all_recipes') }}">All Recipes</a>
+                    </li>
                     
                     {% if session.current_user %}
-                        <li><a href="{{ url_for('add') }}">Add Recipes</a></li>
-                        <li><a href="{{ url_for('profile', user=session['current_user']) }}">My Recipes</a></li>
-                        <li><a href="{{ url_for('log_out') }}">Log Out</a></li>
+                        <li>
+                            <a href="{{ url_for('add') }}">Add Recipes</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('profile', user=session['current_user']) }}">My Recipes</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('log_out') }}">Log Out</a>
+                        </li>
                     {% else %}
-                        <li><a href="{{ url_for('login_to_add') }}">Add Recipes</a></li>
-                        <li><a href="{{ url_for('login') }}">Log In / Register</a></li>
+                        <li>
+                            <a href="{{ url_for('login_to_add') }}">Add Recipes</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('login') }}">Log In / Register</a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
@@ -42,16 +58,25 @@
             </li>
             <li>
                 <a href="{{ url_for('all_recipes') }}">All Recipes</a>
-            </li>
-                    
-                    {% if session.current_user %}
-                        <li><a href="{{ url_for('add') }}">Add Recipes</a></li>
-                        <li><a href="{{ url_for('profile', user=session['current_user']) }}">My Recipes</a></li>
-                        <li><a href="{{ url_for('log_out') }}">Log Out</a></li>
-                    {% else %}
-                        <li><a href="{{ url_for('login_to_add') }}">Add Recipes</a></li>
-                        <li><a href="{{ url_for('login') }}">Log In / Register</a></li>
-                    {% endif %}
+            </li>                   
+            {% if session.current_user %}
+                <li>
+                    <a href="{{ url_for('add') }}">Add Recipes</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('profile', user=session['current_user']) }}">My Recipes</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('log_out') }}">Log Out</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{ url_for('login_to_add') }}">Add Recipes</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}">Log In / Register</a>
+                </li>
+            {% endif %}
         </ul>
     </header>
     <section>
@@ -65,15 +90,15 @@
             {% endif %}
         {% endwith %}
     </section>
-    <main class="container">
-        {% block content %}
-        {% endblock %}
-    </main>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    {% block scripts %}
+<main class="container">
+    {% block content %}
     {% endblock %}
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% block scripts %}
+{% endblock %}
 </body>
 
 </html>

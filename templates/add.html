@@ -1,103 +1,103 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="row">
-    <div class="card-panel center-align red darken-3 white-text col s10 offset-s1">
-        <h3>
-            Add Recipe
-        </h3>
+    <div class="row">
+        <div class="card-panel center-align red darken-3 white-text col s10 offset-s1">
+            <h3>
+                Add Recipe
+            </h3>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col l10 offset-l1 card-panel" id="form-div"><br>
-        <form class="col s10 offset-s1" method="POST" action="{{ url_for('add', user=session['current_user']) }}">
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="recipe_name" type="text" class="validate" name="recipe_name">
-                    <label for="recipe_name">Recipe Name</label>
+    <div class="row">
+        <div class="col l10 offset-l1 card-panel" id="form-div"><br>
+            <form class="col s10 offset-s1" method="POST" action="{{ url_for('add', user=session['current_user']) }}">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="recipe_name" type="text" class="validate" name="recipe_name">
+                        <label for="recipe_name">Recipe Name</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="description" type="text" class="validate" name="description" maxlength="200">
-                    <label for="description">Description</label>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="description" type="text" class="validate" name="description" maxlength="200">
+                        <label for="description">Description</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col m9 s12" id="ingredient-div">
-                    <textarea id="textarea1" class="materialize-textarea" name="ingredients" class="validate"></textarea>
-                    <label for="textarea1">Ingredient</label>
-                </div>
-                <div id="create-ingredient">
+                <div class="row">
+                    <div class="input-field col m9 s12" id="ingredient-div">
+                        <textarea id="textarea1" class="materialize-textarea" name="ingredients" class="validate"></textarea>
+                        <label for="textarea1">Ingredient</label>
+                    </div>
+                    <div id="create-ingredient">
 
+                    </div>
+                    <div class="col m2">
+                        <a class="waves-effect waves-light btn blue btn-small add-ingredient">
+                            <i class="material-icons left">add_circle_outline</i>
+                        </a>
+                        <a class="waves-effect waves-light btn red darken-1 btn-small remove-ingredient">
+                            <i class="material-icons left">cancel</i>
+                        </a>
+                    </div>
                 </div>
-                <div class="col m2">
-                    <a class="waves-effect waves-light btn blue btn-small add-ingredient">
-                        <i class="material-icons left">add_circle_outline</i>
-                    </a>
-                    <a class="waves-effect waves-light btn red darken-1 btn-small remove-ingredient">
-                        <i class="material-icons left">cancel</i>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12" id="step-div">
-                    <textarea id="textarea2" class="materialize-textarea" name="instructions" class="validate"></textarea>
-                    <label for="textarea2" class="instructions-label">Instruction Step</label>
-                </div>
-                <div id="create-step">
+                <div class="row">
+                    <div class="input-field col s12" id="step-div">
+                        <textarea id="textarea2" class="materialize-textarea" name="instructions" class="validate"></textarea>
+                        <label for="textarea2" class="instructions-label">Instruction Step</label>
+                    </div>
+                    <div id="create-step">
 
+                    </div>
+                    <div class="col center-align">
+                        <a class="waves-effect waves-light btn blue btn-small add-step">
+                            <i class="material-icons right">add_circle_outline</i>Add Step
+                        </a>
+                        <a class="waves-effect waves-light btn red darken-1 btn-small remove-step">
+                            <i class="material-icons right">cancel</i>Remove Step
+                        </a>
+                    </div>
                 </div>
-                <div class="col center-align">
-                    <a class="waves-effect waves-light btn blue btn-small add-step">
-                        <i class="material-icons right">add_circle_outline</i>Add Step
-                    </a>
-                    <a class="waves-effect waves-light btn red darken-1 btn-small remove-step">
-                        <i class="material-icons right">cancel</i>Remove Step
-                    </a>
+                <div class="input-field col s12 m6">
+                    <select id="category_name_1" name="category_name_1">
+                        <option value="" disabled selected>Choose a Category</option>
+                        <option value="drink">
+                            &#xf804; Drink
+                        </option>
+                        <option value="meal">
+                            &#xe559; Meal
+                        </option>
+                        <option value="dessert" >
+                            &#xe402 Dessert
+                        </option>
+                        <label for="category_name_1">Recipe Type</label>
+                    </select>
                 </div>
-            </div>
-            <div class="input-field col s12 m6">
-                <select id="category_name_1" name="category_name_1">
-                    <option value="" disabled selected>Choose a Category</option>
-                    <option value="drink">
-                        &#xf804; Drink
-                    </option>
-                    <option value="meal">
-                        &#xe559; Meal
-                    </option>
-                    <option value="dessert" >
-                        &#xe402 Dessert
-                    </option>
-                    <label for="category_name_1">Recipe Type</label>
-                </select>
-            </div>
-            <div class="input-field col s12 m6">
-                <select id="category_name_2" name="category_name_2">
-                    <option value="" disabled selected>Choose a Category</option>
-                    <option value="meat" class="left">
-                        &#xf6d7 Meat Dish
-                    </option>
-                    <option value="vegetarian" class="left">
-                        &#xf81e Vegetarian
-                    </option>
-                    <option value="vegan" class="left">
-                        &#xf06c Vegan
-                    </option>
-                    <label for="category_name_2">Suitability</label>
-                </select>
-            </div>
-            <div class="input-field col s12">
-                <input id="img_url" type="url" name="img_url">
-                <label for="img_url">Add image link here</label>
-            </div>
-            <div class="row center-align">
-                <button class="btn waves-effect waves-light red darken-1" type="submit">Add Recipe
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
-        </form>
+                <div class="input-field col s12 m6">
+                    <select id="category_name_2" name="category_name_2">
+                        <option value="" disabled selected>Choose a Category</option>
+                        <option value="meat" class="left">
+                            &#xf6d7 Meat Dish
+                        </option>
+                        <option value="vegetarian" class="left">
+                            &#xf81e Vegetarian
+                        </option>
+                        <option value="vegan" class="left">
+                            &#xf06c Vegan
+                        </option>
+                        <label for="category_name_2">Suitability</label>
+                    </select>
+                </div>
+                <div class="input-field col s12">
+                    <input id="img_url" type="url" name="img_url">
+                    <label for="img_url">Add image link here</label>
+                </div>
+                <div class="row center-align">
+                    <button class="btn waves-effect waves-light red darken-1" type="submit">Add Recipe
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}
 {% block scripts %}
     <script>

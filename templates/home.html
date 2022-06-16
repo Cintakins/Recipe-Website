@@ -37,7 +37,7 @@
                 {{ todays_recipe.recipe_name.title() }}
                 <i class="material-icons right">more_vert</i>
             </span>
-            <span class="card-title activator grey-text text-darken-4">
+            <div class="card-title activator grey-text text-darken-4">
                 <p class="home-description truncate">
                     {{ todays_recipe.description }}
                 </p>
@@ -62,16 +62,16 @@
                     {% endif %}
                     )
                 </p>
-            </span>
+            </div>
 
         </div>
         <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">{{ todays_recipe.recipe_name.title() }}<i
+            <div class="card-title grey-text text-darken-4">{{ todays_recipe.recipe_name.title() }}<i
                     class="material-icons right">close</i>
                 <p class="description">
                     {{ todays_recipe.description }}
                 </p>
-            </span>
+            </div>
             <h6>
                 Ingredients
             </h6>
@@ -90,7 +90,7 @@
                 </a>
             </p>
         </div>
-        <div clas="center-align">
+        <div class="center-align">
             <p>
                 By: {{ todays_recipe.added_by }}
             </p>

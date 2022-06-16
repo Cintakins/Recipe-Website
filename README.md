@@ -67,7 +67,9 @@ The font awesome icons did not work in the select box. I think this is due to it
 
 the brand-logo title overlapped the content on smaller screens. Instead of targetting the class, I created an ID for the logo and targetted it with CSS to minimize it for smaller screens.
 
-heroku app kept crashing 
+heroku app kept crashing. At first i thought it was something to do with the favicon because an error kept appearing with that code in the heroku log, but then after googling other errors "bash: app.py: comand not found", I compared my procfile to the task manager files and realised "python" was missing from the command. tHE APP NOW WORKS ALTHOUGH THERE IS A WARNING "This is not a development server. Do not use it in a production deployment.
+
+On tidying up my html the materialize icons stopped working and i don't know why, but I have run out of time to fix it.
 
 Deployment:
 
