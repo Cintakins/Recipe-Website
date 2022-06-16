@@ -29,7 +29,7 @@
     <div class="card large col s12 m8 offset-m2 l6 offset-l3" id="home-page-recipe">
         <div class="card-image waves-effect waves-block waves-light">
             <a href="{{ url_for('one_recipe', recipe_id=todays_recipe._id)}}">
-                <img class="activator" src="{{ todays_recipe.img_url }}">
+                <img class="activator" src="{{ todays_recipe.img_url }}" alt="Recipe image">
             </a>
         </div>
         <div class="card-content">
